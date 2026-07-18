@@ -1,0 +1,55 @@
+---
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+
+const description =
+    'BackDoor Map helps people find crowdsourced reports of freight and service entrances while making the limits of that information clear.';
+---
+
+<BackDoorMapLayout
+    title="BackDoor Map | Cold Forge Works LLC"
+    description={description}
+    heading="BackDoor Map"
+    canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.overview}
+>
+    <section aria-labelledby="about-backdoor-map">
+        <p class="section-label mb-4">Reported entrance information</p>
+        <h2 id="about-backdoor-map">Find the side of the building others reported</h2>
+        <p>
+            BackDoor Map helps users find crowdsourced reports of freight and service entrance locations. People can
+            report an entrance pin, confirm or dispute it, suggest a correction, and review pending corrections.
+        </p>
+        <p>
+            The service is operated by {BACKDOOR_MAP_PUBLICATION.operatorName}. Questions can be sent to
+            <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`} class="ml-1">
+                {BACKDOOR_MAP_PUBLICATION.supportEmail}
+            </a>.
+        </p>
+    </section>
+
+    <section aria-labelledby="important-limits">
+        <p class="section-label mb-4">Important limits</p>
+        <h2 id="important-limits">Crowdsourced context, not official guidance</h2>
+        <p>
+            Reports may be incomplete, outdated, misplaced, or otherwise inaccurate. Verify conditions on site and
+            follow posted signs, laws, property rules, and instructions from authorized personnel.
+        </p>
+        <p>
+            BackDoor Map is not official building information, parking guidance, routing guidance, security or access
+            instructions, authorization to enter property, or emergency guidance. Do not rely on it for safety-critical
+            decisions.
+        </p>
+    </section>
+
+    <section aria-labelledby="policies-and-help">
+        <p class="section-label mb-4">Policies and help</p>
+        <h2 id="policies-and-help">Learn how the service works</h2>
+        <ul>
+            <li><a href="/backdoor-map/privacy">Privacy Policy</a></li>
+            <li><a href="/backdoor-map/terms">Terms of Use</a></li>
+            <li><a href="/backdoor-map/community-standards">Community Standards</a></li>
+            <li><a href="/backdoor-map/support">Support</a></li>
+            <li><a href="/backdoor-map/data-requests">Data Requests</a></li>
+        </ul>
+    </section>
+</BackDoorMapLayout>

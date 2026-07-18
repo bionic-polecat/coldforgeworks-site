@@ -6,9 +6,10 @@ import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal
 interface Props {
     title: string;
     description: string;
+    canonicalUrl?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonicalUrl } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
@@ -20,6 +21,7 @@ const year = new Date().getFullYear();
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
     </head>

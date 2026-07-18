@@ -49,4 +49,40 @@
     .disclaimer {
         @apply mt-4 rounded-lg border border-border/80 bg-surface px-4 py-3 text-sm text-muted leading-relaxed;
     }
+
+    .document-meta {
+        @apply mt-6 border-l-2 border-accent pl-4 text-sm leading-relaxed text-muted;
+    }
+
+    .legal-copy {
+        @apply text-base leading-relaxed text-gray-300;
+    }
+
+    .legal-copy section {
+        @apply border-t border-border py-10 sm:py-12;
+    }
+
+    .legal-copy h2 {
+        @apply mb-5 text-2xl;
+    }
+
+    .legal-copy h3 {
+        @apply mb-3 mt-7;
+    }
+
+    .legal-copy p + p {
+        @apply mt-4;
+    }
+
+    .legal-copy ul {
+        @apply mt-4 list-outside list-disc space-y-2 pl-6 text-muted;
+    }
+
+    .legal-copy strong {
+        @apply text-gray-100;
+    }
+
+    .page-link-list {
+        @apply mt-6 grid gap-x-8 gap-y-3 border-y border-border py-5 text-sm sm:grid-cols-2;
+    }
 }

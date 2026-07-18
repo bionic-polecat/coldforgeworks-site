@@ -1,0 +1,48 @@
+---
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+
+const description = 'Support information and contact details for BackDoor Map.';
+---
+
+<BackDoorMapLayout
+    title="BackDoor Map Support | Cold Forge Works LLC"
+    description={description}
+    heading="Support"
+    canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.support}
+>
+    <section aria-labelledby="support-contact">
+        <h2 id="support-contact">Contact BackDoor Map support</h2>
+        <p>
+            Email <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`}>
+                {BACKDOOR_MAP_PUBLICATION.supportEmail}
+            </a> for help with the app, a contribution, or a policy question. We do not promise a particular response
+            time, but useful context can help us investigate.
+        </p>
+    </section>
+
+    <section aria-labelledby="support-details">
+        <h2 id="support-details">What to include</h2>
+        <ul>
+            <li>your device platform, such as iPhone or Android;</li>
+            <li>the BackDoor Map app version and build number;</li>
+            <li>the address or building involved;</li>
+            <li>the approximate time the issue occurred; and</li>
+            <li>a clear description of what happened and what you expected.</li>
+        </ul>
+        <p>
+            Do not email passwords, door or access codes, alarm details, private entry instructions, or other sensitive
+            building information. BackDoor Map does not have user passwords or accounts.
+        </p>
+    </section>
+
+    <section aria-labelledby="support-resources">
+        <h2 id="support-resources">Policies and requests</h2>
+        <ul>
+            <li><a href="/backdoor-map/privacy">Privacy Policy</a></li>
+            <li><a href="/backdoor-map/terms">Terms of Use</a></li>
+            <li><a href="/backdoor-map/community-standards">Community Standards</a></li>
+            <li><a href="/backdoor-map/data-requests">Data Requests</a></li>
+        </ul>
+    </section>
+</BackDoorMapLayout>

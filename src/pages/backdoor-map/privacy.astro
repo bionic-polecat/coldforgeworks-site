@@ -1,0 +1,170 @@
+---
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+
+const description = 'Privacy Policy for the BackDoor Map mobile app operated by Cold Forge Works LLC.';
+---
+
+<BackDoorMapLayout
+    title="BackDoor Map Privacy Policy | Cold Forge Works LLC"
+    description={description}
+    heading="Privacy Policy"
+    canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.privacy}
+    showDocumentStatus
+>
+    <section aria-labelledby="privacy-overview">
+        <h2 id="privacy-overview">Overview</h2>
+        <p>
+            This policy explains how {BACKDOOR_MAP_PUBLICATION.operatorName} handles information when you use BackDoor
+            Map. The app does not require an account or login. It does use an anonymous installation identifier so
+            contributions from one installation can be recognized, limited, and moderated.
+        </p>
+    </section>
+
+    <section aria-labelledby="information-collected">
+        <h2 id="information-collected">Information we collect</h2>
+
+        <h3>Anonymous installation identifier</h3>
+        <p>
+            The app creates a random identifier and stores it on your device. It is sent with contributions and may be
+            associated with entrance pins, votes, corrections, correction votes, private reviewer notes, private
+            reports, legal acceptances, contribution restrictions, and moderation records. It is not a user account,
+            but it can distinguish one app installation from another.
+        </p>
+
+        <h3>Crowdsourced map contributions</h3>
+        <p>Depending on what you submit, we may store:</p>
+        <ul>
+            <li>building addresses and building coordinates;</li>
+            <li>reported entrance coordinates and their status;</li>
+            <li>confirm or reject votes on entrance pins;</li>
+            <li>suggested correction coordinates and votes on those corrections;</li>
+            <li>optional private reviewer notes submitted during entrance or correction workflows;</li>
+            <li>private reports about active pins or pending corrections; and</li>
+            <li>timestamps, app version information, and related workflow records.</li>
+        </ul>
+        <p>
+            Entrance and building coordinates that you deliberately submit are stored on our backend. Do not include
+            door codes, alarm details, personal information, or private access instructions in reviewer notes.
+        </p>
+
+        <h3>Foreground current location</h3>
+        <p>
+            If you tap the location control and grant permission, BackDoor Map uses your foreground location to show
+            where you are on the map. The app does not request background location. The current implementation does not
+            send or store that live GPS location in the BackDoor Map backend. A coordinate you deliberately choose and
+            submit as a building, entrance, or correction location is different and is stored as described above.
+        </p>
+
+        <h3>Address search</h3>
+        <p>
+            Address text you search for is sent to a Supabase Edge Function and then to LocationIQ to return address
+            suggestions. Supabase may also receive the anonymous installation identifier for rate limiting; that
+            identifier is not added to the LocationIQ autocomplete request. BackDoor Map does not intentionally save
+            search text in its product database, although service providers may keep ordinary request logs under their
+            own practices.
+        </p>
+
+        <h3>Favorites and Recents</h3>
+        <p>
+            Favorites, Recents, saved building names, selected addresses, coordinates, and selection history are kept
+            in local app storage on your device. They are not synced to a BackDoor Map account or Supabase table. You
+            can remove individual Recents, clear non-favorite Recents, or remove Favorites in the app; uninstalling the
+            app generally removes its local storage according to your device platform's behavior.
+        </p>
+
+        <h3>Legal, abuse-prevention, and moderation records</h3>
+        <p>
+            When legal acceptance is enabled, we may store the accepted Terms and Community Standards versions, time,
+            app version, and installation identifier. We also maintain private content reports, installation denylist
+            history, moderation actions, and fixed-window rate-limit counters. Device subjects used in rate counters
+            are hashed; other contribution, acceptance, and moderation records may retain the installation identifier
+            where needed to provide or protect the service.
+        </p>
+    </section>
+
+    <section aria-labelledby="information-use">
+        <h2 id="information-use">How we use information</h2>
+        <ul>
+            <li>provide building search and reported entrance information;</li>
+            <li>create, evaluate, correct, and display crowdsourced entrance pins;</li>
+            <li>remember an installation's vote or contribution state;</li>
+            <li>review private reports and enforce the Community Standards;</li>
+            <li>limit spam, abuse, duplicate activity, and excessive requests;</li>
+            <li>record acceptance of current legal documents; and</li>
+            <li>diagnose reliability, security, and support issues.</li>
+        </ul>
+    </section>
+
+    <section aria-labelledby="sharing-processors">
+        <h2 id="sharing-processors">Service providers and disclosure</h2>
+        <p>
+            Supabase hosts the app's database, RPCs, and Edge Functions. LocationIQ processes address-search queries.
+            The map shown in the app uses the platform map provider: Apple Maps on iOS and Google Maps on Android.
+            Those providers handle information under their own terms and privacy policies.
+        </p>
+        <p>
+            We may disclose information when reasonably necessary to comply with law, protect rights or safety,
+            investigate abuse, or support a business transfer subject to appropriate safeguards. We do not sell
+            personal data and do not use BackDoor Map data for behavioral advertising.
+        </p>
+    </section>
+
+    <section aria-labelledby="analytics-tracking">
+        <h2 id="analytics-tracking">Analytics, advertising, and tracking</h2>
+        <p>
+            BackDoor Map currently has no third-party client analytics or crash-reporting SDK. It has no advertising
+            SDK and no behavioral advertising. The app does not use accounts or public profiles. This website does not
+            add analytics, tracking cookies, or advertising through these BackDoor Map pages.
+        </p>
+    </section>
+
+    <section aria-labelledby="retention-deletion">
+        <h2 id="retention-deletion">Retention and deletion</h2>
+        <p>
+            Local Favorites and Recents remain on the device until you remove them, clear them where the app offers
+            that control, or remove the app, subject to device backup and platform behavior.
+        </p>
+        <p>
+            Backend records are retained for as long as reasonably needed to operate and protect the service, preserve
+            map history and vote integrity, respond to requests, comply with law, and maintain moderation auditability.
+            The current system does not set one automatic deletion period for all contribution, legal, or moderation
+            records. Rate counters use fixed time windows, but their final cleanup schedule is still an operational
+            policy decision.
+        </p>
+        <p>
+            You may request access, correction, or deletion where applicable by following the
+            <a href="/backdoor-map/data-requests">Data Requests process</a>. Because there are no accounts, we may need
+            enough detail to locate a contribution associated with an anonymous installation. We cannot promise to
+            identify or delete records that cannot be reliably linked to the information you provide. Some records may
+            be retained for fraud prevention, legal compliance, security, moderation history, or as aggregate or
+            anonymized information.
+        </p>
+    </section>
+
+    <section aria-labelledby="security-children">
+        <h2 id="security-children">Security and children</h2>
+        <p>
+            We use access controls and privacy-reducing interfaces intended to protect nonpublic records. No system is
+            perfectly secure, and anonymous installation identifiers should not be treated as strong authentication.
+        </p>
+        <p>
+            BackDoor Map is a general utility and is not directed to children under 13. We do not knowingly seek
+            personal information from children. If you believe a child has submitted personal information, contact us
+            so we can review the situation.
+        </p>
+    </section>
+
+    <section aria-labelledby="policy-changes-contact">
+        <h2 id="policy-changes-contact">Policy changes and contact</h2>
+        <p>
+            We may update this policy as the service changes. We will post the current version and effective date on
+            this page. Material changes may also require renewed in-app acceptance when appropriate.
+        </p>
+        <p>
+            Questions and privacy requests: <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`}>
+                {BACKDOOR_MAP_PUBLICATION.supportEmail}
+            </a>.
+        </p>
+    </section>
+</BackDoorMapLayout>

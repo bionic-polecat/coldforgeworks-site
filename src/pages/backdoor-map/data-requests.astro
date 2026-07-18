@@ -1,0 +1,55 @@
+---
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+
+const description = 'How to make a data access, correction, or deletion request for BackDoor Map.';
+---
+
+<BackDoorMapLayout
+    title="BackDoor Map Data Requests | Cold Forge Works LLC"
+    description={description}
+    heading="Data Requests"
+    canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.dataRequests}
+>
+    <section aria-labelledby="request-process">
+        <h2 id="request-process">Request access, correction, or deletion</h2>
+        <p>
+            Email <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`}>
+                {BACKDOOR_MAP_PUBLICATION.supportEmail}
+            </a> to request access to, correction of, or deletion of BackDoor Map information where applicable. Include
+            the type of request and enough detail for us to understand what records may be involved.
+        </p>
+    </section>
+
+    <section aria-labelledby="anonymous-records">
+        <h2 id="anonymous-records">How anonymous records work</h2>
+        <p>
+            BackDoor Map has no user accounts. Contributions are associated with an anonymous installation identifier
+            rather than a public profile. The app does not prominently display raw internal identifiers, and you do not
+            need to locate one before contacting us.
+        </p>
+        <p>Details that may help us locate a relevant submission include:</p>
+        <ul>
+            <li>the building address;</li>
+            <li>whether the request concerns a pin, vote, correction, reviewer note, or report;</li>
+            <li>the approximate date and time of the activity;</li>
+            <li>the app platform, version, and build; and</li>
+            <li>a description of the submitted location or issue.</li>
+        </ul>
+        <p>
+            We may ask for additional information to avoid changing or disclosing someone else's contribution. Some
+            anonymous records may not be identifiable without sufficient details, and we cannot promise to locate data
+            that cannot reliably be connected to the information provided.
+        </p>
+    </section>
+
+    <section aria-labelledby="request-limits">
+        <h2 id="request-limits">Limits and retention</h2>
+        <p>
+            A request may be limited where records must be retained for fraud prevention, legal compliance, security,
+            vote integrity, or moderation history. Aggregate or anonymized information may remain after a request is
+            completed. We will evaluate requests under applicable law and the circumstances of the record.
+        </p>
+        <p>For more detail, read the <a href="/backdoor-map/privacy">Privacy Policy</a>.</p>
+    </section>
+</BackDoorMapLayout>

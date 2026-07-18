@@ -1,0 +1,110 @@
+---
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+
+const description = 'Terms of Use for the BackDoor Map mobile app operated by Cold Forge Works LLC.';
+---
+
+<BackDoorMapLayout
+    title="BackDoor Map Terms of Use | Cold Forge Works LLC"
+    description={description}
+    heading="Terms of Use"
+    canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.terms}
+    showDocumentStatus
+>
+    <section aria-labelledby="terms-acceptance">
+        <h2 id="terms-acceptance">Acceptance</h2>
+        <p>
+            These Terms govern your use of BackDoor Map, operated by {BACKDOOR_MAP_PUBLICATION.operatorName}. By using
+            the service, and by accepting these Terms when the app asks you to do so, you agree to follow them. If you
+            do not agree, do not make contributions; you may stop using the service.
+        </p>
+    </section>
+
+    <section aria-labelledby="terms-service">
+        <h2 id="terms-service">What BackDoor Map provides</h2>
+        <p>
+            BackDoor Map provides crowdsourced reports of freight and service entrance locations. Reports, votes, and
+            corrections come from users and may be incomplete, outdated, misplaced, or wrong.
+        </p>
+        <p>
+            BackDoor Map does not guarantee availability, accuracy, safety, access, authorization, or suitability for
+            a particular purpose. It is not official building information, parking guidance, routing guidance,
+            security or access instructions, authorization to enter property, or emergency guidance.
+        </p>
+    </section>
+
+    <section aria-labelledby="terms-responsibility">
+        <h2 id="terms-responsibility">Your responsibilities</h2>
+        <p>
+            Use the service lawfully and with reasonable care. Verify conditions on site, follow posted signs and
+            property rules, obey applicable laws, and follow instructions from authorized personnel. Do not use the
+            app while driving or in a way that creates a safety risk.
+        </p>
+        <p>You must not:</p>
+        <ul>
+            <li>submit spam, deliberately false locations, or misleading contributions;</li>
+            <li>manipulate votes, corrections, reports, or other service controls;</li>
+            <li>submit door codes, alarm details, private access instructions, personal information, or other sensitive security information;</li>
+            <li>interfere with, probe, overload, reverse engineer, or misuse the service;</li>
+            <li>evade contribution restrictions or rate limits; or</li>
+            <li>use the service to violate law, property rights, or another person's rights.</li>
+        </ul>
+        <p>The <a href="/backdoor-map/community-standards">Community Standards</a> also apply to contributions.</p>
+    </section>
+
+    <section aria-labelledby="terms-license">
+        <h2 id="terms-license">Your contributions</h2>
+        <p>
+            You keep any rights you may have in information you submit. You give {BACKDOOR_MAP_PUBLICATION.operatorName}
+            a nonexclusive, worldwide, royalty-free license to host, store, reproduce, modify for formatting or
+            moderation, display, distribute, and otherwise use your submitted map information as needed to operate,
+            improve, secure, and promote BackDoor Map. You represent that you have the right to submit the information.
+        </p>
+    </section>
+
+    <section aria-labelledby="terms-moderation">
+        <h2 id="terms-moderation">Moderation and contribution access</h2>
+        <p>
+            We may review reports, reject or hide contributions, preserve moderation records, limit requests, or block
+            an installation from contributing when reasonably necessary to enforce these Terms, protect the service,
+            or address legal or safety concerns. A user report does not automatically remove content. We do not promise
+            to review or act on every report in a particular time.
+        </p>
+    </section>
+
+    <section aria-labelledby="terms-changes">
+        <h2 id="terms-changes">Service changes and availability</h2>
+        <p>
+            We may change, suspend, or discontinue features, data, or the service. The service may be unavailable or
+            contain errors. We may update these Terms and will post the current version and effective date. Material
+            updates may require renewed acceptance before further contributions.
+        </p>
+    </section>
+
+    <section aria-labelledby="terms-disclaimers">
+        <h2 id="terms-disclaimers">Disclaimers and limitation of liability</h2>
+        <p>
+            To the fullest extent permitted by law, BackDoor Map is provided "as is" and "as available," without
+            warranties of accuracy, reliability, availability, fitness for a particular purpose, noninfringement, or
+            safety. Some jurisdictions do not allow certain warranty exclusions, so some exclusions may not apply.
+        </p>
+        <p>
+            To the fullest extent permitted by law, {BACKDOOR_MAP_PUBLICATION.operatorName} and its members, employees,
+            and contractors will not be liable for indirect, incidental, special, consequential, exemplary, or
+            punitive damages, or for loss arising from reliance on crowdsourced information, inability to use the
+            service, unauthorized property access, or unsafe conduct. Nothing in these Terms excludes liability that
+            cannot legally be excluded or limited.
+        </p>
+    </section>
+
+    <section aria-labelledby="terms-contact">
+        <h2 id="terms-contact">Contact</h2>
+        <p>
+            Questions about these Terms may be sent to
+            <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`} class="ml-1">
+                {BACKDOOR_MAP_PUBLICATION.supportEmail}
+            </a>.
+        </p>
+    </section>
+</BackDoorMapLayout>

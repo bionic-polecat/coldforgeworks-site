@@ -1,0 +1,52 @@
+---
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+
+const description = 'Community Standards for contributing entrance information to BackDoor Map.';
+---
+
+<BackDoorMapLayout
+    title="BackDoor Map Community Standards | Cold Forge Works LLC"
+    description={description}
+    heading="Community Standards"
+    canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.communityStandards}
+    showDocumentStatus
+>
+    <section aria-labelledby="standards-good-faith">
+        <h2 id="standards-good-faith">Contribute in good faith</h2>
+        <p>
+            BackDoor Map works when people share careful, useful reports. Submit a pin or correction only when you
+            reasonably believe it reflects a freight or service entrance.
+        </p>
+        <ul>
+            <li>Do not deliberately place false or misleading pins.</li>
+            <li>Do not manipulate entrance votes or correction votes.</li>
+            <li>Do not submit spam or repeatedly misuse contribution tools.</li>
+            <li>Do not submit door codes, alarm details, private access instructions, personal information, or other sensitive security information.</li>
+        </ul>
+    </section>
+
+    <section aria-labelledby="standards-corrections">
+        <h2 id="standards-corrections">Correct ordinary inaccuracies through the product</h2>
+        <p>
+            Use Confirm correct, Mark wrong, correction voting, or Suggest correction for ordinary disagreements about
+            an entrance location. Those tools are the normal way to improve map accuracy.
+        </p>
+        <p>
+            Use Report only for exceptional spam, deliberately false activity, duplicate or stale records, or unsafe
+            or sensitive submissions that need operator review. Reports are private, are reviewed manually, and do not
+            automatically remove content.
+        </p>
+    </section>
+
+    <section aria-labelledby="standards-enforcement">
+        <h2 id="standards-enforcement">Enforcement</h2>
+        <p>
+            Violations may result in a pin or correction being rejected, a report being recorded in the moderation
+            history, or an installation being blocked from contributing. Questions can be sent to
+            <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`} class="ml-1">
+                {BACKDOOR_MAP_PUBLICATION.supportEmail}
+            </a>.
+        </p>
+    </section>
+</BackDoorMapLayout>

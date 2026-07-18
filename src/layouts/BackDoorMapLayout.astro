@@ -1,0 +1,36 @@
+---
+import BackDoorMapNav from '../components/BackDoorMapNav.astro';
+import { BACKDOOR_MAP_PUBLICATION } from '../data/backdoor-map';
+import CompanyLayout from './CompanyLayout.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    heading: string;
+    canonicalUrl: string;
+    showDocumentStatus?: boolean;
+}
+
+const { title, description, heading, canonicalUrl, showDocumentStatus = false } = Astro.props;
+---
+
+<CompanyLayout title={title} description={description} canonicalUrl={canonicalUrl}>
+    <header class="pb-10 sm:pb-12">
+        <p class="section-label mb-4">
+            <a href="/backdoor-map" class="text-muted no-underline hover:text-accent">BackDoor Map</a>
+        </p>
+        <h1>{heading}</h1>
+        {
+            showDocumentStatus && (
+                <p class="document-meta">
+                    Effective date: {BACKDOOR_MAP_PUBLICATION.effectiveDate}
+                </p>
+            )
+        }
+        <BackDoorMapNav />
+    </header>
+
+    <div class="legal-copy">
+        <slot />
+    </div>
+</CompanyLayout>

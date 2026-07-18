@@ -1,0 +1,14 @@
+---
+const links = [
+    { href: '/backdoor-map', label: 'Overview' },
+    { href: '/backdoor-map/privacy', label: 'Privacy' },
+    { href: '/backdoor-map/terms', label: 'Terms' },
+    { href: '/backdoor-map/community-standards', label: 'Community Standards' },
+    { href: '/backdoor-map/support', label: 'Support' },
+    { href: '/backdoor-map/data-requests', label: 'Data Requests' }
+];
+---
+
+<nav aria-label="BackDoor Map pages" class="page-link-list">
+    {links.map((link) => <a href={link.href}>{link.label}</a>)}
+</nav>
