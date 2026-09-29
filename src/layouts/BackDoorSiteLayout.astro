@@ -1,0 +1,91 @@
+---
+import '@fontsource-variable/inter/wght.css';
+import { BACKDOOR_MAP_PUBLICATION as publication } from '../data/backdoor-map';
+import SearchMetadata from '../components/SearchMetadata.astro';
+import WebsiteAnalytics from '../components/WebsiteAnalytics.astro';
+interface Props { title: string; description: string; canonicalUrl?: string; document?: boolean; noIndex?: boolean }
+const { title, description, canonicalUrl, document = false, noIndex = false } = Astro.props;
+const home = publication.homePath;
+---
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="theme-color" content="#133e36" />
+        <SearchMetadata {title} {description} {canonicalUrl} {noIndex}
+            imageUrl={new URL('/backdoor-map/service-entrance.webp', publication.urls.overview).href} />
+        <WebsiteAnalytics />
+        <link rel="icon" type="image/svg+xml" href="/backdoor-map/mark.svg" />
+    </head>
+    <body class="backdoor-site">
+        <a class="skip-link" href="#main">Skip to content</a>
+        <header class="site-header">
+            <div class="site-width header-inner">
+                <a class="brand" href={home} aria-label="BackDoor Map home"><img src="/backdoor-map/mark.svg" alt="" width="36" height="36" /><span>BackDoor Map</span></a>
+                <nav aria-label="Main navigation"><a href={`${home}#your-places`}>Your places</a><a href={`${home}#questions`}>Questions</a><a href="/backdoor-map/support">Support</a></nav>
+            </div>
+        </header>
+        <main id="main" class:list={{ 'document-main': document }}><slot /></main>
+        <footer class="site-footer">
+            <div class="site-width footer-grid">
+                <div><a class="brand" href={home}>BackDoor Map</a><p>Your places, remembered.</p><p>A product of <a href="https://coldforgeworks.com">Cold Forge Works LLC</a>.</p></div>
+                <nav aria-label="Help and policies">
+                    <a href="/backdoor-map/support">Support</a><a href="/backdoor-map/privacy">App privacy</a><a href="/backdoor-map/terms">App terms</a><a href="/backdoor-map/community-standards">Community standards</a><a href="/backdoor-map/data-requests">Data requests</a><a href="/website-privacy">Website privacy</a>
+                </nav>
+            </div>
+            <div class="site-width footer-bottom"><span>&copy; {new Date().getFullYear()} {publication.operatorName}</span><a href={`mailto:${publication.supportEmail}`}>{publication.supportEmail}</a></div>
+        </footer>
+    </body>
+</html>
+<style is:global>
+    .backdoor-site, .backdoor-site *, .backdoor-site *::before, .backdoor-site *::after { box-sizing: border-box; }
+    body.backdoor-site { margin: 0; background: #fff; color: #182923; color-scheme: light; font-family: 'Inter Variable', system-ui, sans-serif; line-height: 1.65; letter-spacing: 0; overflow-wrap: anywhere; }
+    .backdoor-site img { max-width: 100%; height: auto; display: block; }
+    .backdoor-site a { color: #145f4c; text-underline-offset: .22em; }
+    .backdoor-site a:hover { color: #0c4335; }
+    .backdoor-site :is(a, summary, button):focus-visible { outline: 3px solid #127c68; outline-offset: 5px; }
+    .backdoor-site :is(h1, h2, h3, p) { margin-top: 0; }
+    .backdoor-site :is(h1, h2, h3) { line-height: 1.15; letter-spacing: 0; color: inherit; }
+    .backdoor-site h2 { font-size: 2.25rem; font-weight: 650; }
+    .backdoor-site h3 { font-size: 1.25rem; font-weight: 650; }
+    .site-width { width: min(1160px, calc(100% - 64px)); margin-inline: auto; }
+    .skip-link { position: absolute; top: -100px; left: 12px; z-index: 5; background: white; padding: 12px; }
+    .skip-link:focus { top: 12px; }
+    .site-header { background: #fff; border-bottom: 1px solid #e2e8e4; }
+    .header-inner { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: #173e33; font-size: 1.2rem; font-weight: 750; text-decoration: none; line-height: 1.2; }
+    .brand img { flex: 0 0 36px; }
+    .site-header nav { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+    .site-header nav a { color: #253e35; text-decoration: none; font-size: .9rem; padding-block: 8px; }
+    .site-header nav a:hover { text-decoration: underline; }
+    .site-footer { background: #f1f5f2; border-top: 1px solid #dae4dc; padding: 52px 0 24px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-grid p { font-size: .9rem; margin-top: 12px; margin-bottom: 0; color: #4b6056; }
+    .footer-grid nav { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 28px; align-content: start; }
+    .footer-grid nav a { font-size: .9rem; }
+    .footer-bottom { border-top: 1px solid #d6e1da; margin-top: 36px; padding-top: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: .8rem; color: #4b6056; }
+    .footer-bottom a { overflow-wrap: anywhere; }
+    .document-main { max-width: 800px; padding: 64px 24px; margin-inline: auto; }
+    .document-main h1 { font-size: 2.75rem; }
+    .document-main .section-label { font-size: .875rem; font-weight: 650; margin-bottom: 12px; }
+    .document-main .document-meta { background: #fff3c5; border-left: 3px solid #987311; padding: 16px; font-size: .9rem; }
+    .document-main .page-link-list { display: flex; flex-wrap: wrap; gap: 12px 24px; padding-block: 24px; border-block: 1px solid #d9e3dc; margin-block: 24px; font-size: .9rem; }
+    .document-main .legal-copy section { padding-block: 24px; border-bottom: 1px solid #d9e3dc; }
+    .document-main .legal-copy h2 { font-size: 1.65rem; margin-bottom: 20px; }
+    .document-main .legal-copy h3 { font-size: 1.2rem; }
+    .document-main .legal-copy li { margin-block: 8px; }
+    @media (max-width: 640px) {
+        .site-width { width: calc(100% - 40px); }
+        .header-inner { display: block; padding-block: 16px 10px; }
+        .site-header nav { margin-top: 12px; gap: 8px 24px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+        .footer-grid nav { gap: 12px 20px; }
+        .document-main { padding: 36px 20px; }
+        .document-main h1 { font-size: 2.2rem; overflow-wrap: anywhere; }
+        .backdoor-site h2 { font-size: 1.7rem; }
+    }
+    @media (prefers-reduced-motion: reduce) { html:has(.backdoor-site), .backdoor-site * { scroll-behavior: auto !important; } }
+</style>

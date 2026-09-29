@@ -1,5 +1,23 @@
 # Astro on Netlify Platform Starter
 
+## BackDoor Map website candidate
+
+This repository also contains the unpublished dedicated BackDoor Map website.
+The default build retains the company homepage; `PUBLIC_SITE_BRAND=backdoor-map`
+selects the dedicated product homepage and `backdoormap.com` canonical URLs.
+Run `npm test` before building either mode. No additional dependency is required.
+The refreshed company homepage links to live reviveme.gg and the working local
+BackDoor Map overview. Set `PUBLIC_BACKDOOR_SITE_LIVE=true` only after the dedicated
+domain is publicly verified to switch that product link to backdoormap.com.
+
+Read [hosting and verification notes](docs/BACKDOOR_MAP_DOMAIN_SITE.md) before
+publishing. Account-aware policies are drafts and outside-app deletion is
+disabled by default. Do not push draft changes into an auto-deploying company
+project or enable account deletion without its separate validation/approval.
+
+The starter documentation below is retained as reference, not an instruction to
+create a replacement account, install tooling or deploy the unfinished candidate.
+
 [Live Demo](https://astro-platform-starter.netlify.app/)
 
 A modern starter based on Astro.js, Tailwind, and [Netlify Core Primitives](https://docs.netlify.com/core/overview/#develop) (Edge Functions, Image CDN, Blob Store).

@@ -10,7 +10,28 @@ const description = 'How to make a data access, correction, or deletion request 
     description={description}
     heading="Data Requests"
     canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.dataRequests}
+    releaseDraft
 >
+    <section aria-labelledby="delete-backup-account">
+        <h2 id="delete-backup-account">Delete your backup account and cloud backups</h2>
+        <p>
+            <a href="/backdoor-map/delete-account">Request account deletion</a> without reinstalling the app.
+            Confirm ownership with a fresh code sent to your backup-account email, then confirm permanent deletion.
+            Never send that code to support. You can also use App information &gt; Account backup &gt; Delete backup
+            account in the app.
+        </p>
+        <p>
+            This removes your email account and its current and previous active cloud backups. Saved places on your
+            phones, exported files and separately submitted community contributions are not deleted. Provider
+            recovery copies and required security records may remain separately. Pausing backup or signing out is
+            not account deletion.
+        </p>
+        <p>
+            If you cannot access your email or confirmation is unavailable, contact support below. An unverified
+            message cannot authorize deletion of someone else's account. If a deletion response is lost, contact
+            support before creating another account; do not assume deletion succeeded or was canceled.
+        </p>
+    </section>
     <section aria-labelledby="request-process">
         <h2 id="request-process">Request access, correction, or deletion</h2>
         <p>
@@ -22,10 +43,11 @@ const description = 'How to make a data access, correction, or deletion request 
     </section>
 
     <section aria-labelledby="anonymous-records">
-        <h2 id="anonymous-records">How anonymous records work</h2>
+        <h2 id="anonymous-records">Community records use a separate identity</h2>
         <p>
-            BackDoor Map has no user accounts. Contributions are associated with an anonymous installation identifier
-            rather than a public profile. The app does not prominently display raw internal identifiers, and you do not
+            Community contributions are associated with a pseudonymous installation identifier rather than your
+            optional backup account or a public profile. Signing in to backup does not prove ownership of community
+            contributions. The app does not prominently display raw internal identifiers, and you do not
             need to locate one before contacting us.
         </p>
         <p>Details that may help us locate a relevant submission include:</p>
@@ -38,9 +60,20 @@ const description = 'How to make a data access, correction, or deletion request 
         </ul>
         <p>
             We may ask for additional information to avoid changing or disclosing someone else's contribution. Some
-            anonymous records may not be identifiable without sufficient details, and we cannot promise to locate data
+            installation-linked records may not be identifiable without sufficient details, and we cannot promise to locate data
             that cannot reliably be connected to the information provided.
         </p>
+    </section>
+
+    <section aria-labelledby="local-data">
+        <h2 id="local-data">Local places and exported files</h2>
+        <p>
+            Manage local Favorites, Recents, notes and personal pins in the app. Keep a successful backup or usable
+            encrypted export before changing phones or reinstalling. Deleting local data does not remove an older
+            cloud snapshot; manage cloud backups separately in Account backup. We cannot remotely erase exported
+            files or recover a lost export key.
+        </p>
+        <p>Do not send support sign-in codes, recovery keys, passwords or private backup files.</p>
     </section>
 
     <section aria-labelledby="request-limits">

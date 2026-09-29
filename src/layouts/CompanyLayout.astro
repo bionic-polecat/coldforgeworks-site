@@ -2,14 +2,17 @@
 import '../styles/globals.css';
 import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import SearchMetadata from '../components/SearchMetadata.astro';
+import WebsiteAnalytics from '../components/WebsiteAnalytics.astro';
 
 interface Props {
     title: string;
     description: string;
     canonicalUrl?: string;
+    noIndex?: boolean;
 }
 
-const { title, description, canonicalUrl } = Astro.props;
+const { title, description, canonicalUrl, noIndex = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
@@ -21,11 +24,13 @@ const year = new Date().getFullYear();
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+        <SearchMetadata {title} {description} {canonicalUrl} {noIndex} />
+        <WebsiteAnalytics />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
     </head>
     <body class="antialiased">
+        <a class="company-skip-link" href="#company-main">Skip to content</a>
         <div class="flex min-h-screen flex-col px-5 sm:px-8">
             <div class="mx-auto flex w-full max-w-3xl flex-1 flex-col">
                 <header class="py-10 sm:py-14">
@@ -34,14 +39,19 @@ const year = new Date().getFullYear();
                     </a>
                 </header>
 
-                <main class="flex-1 pb-16 sm:pb-20">
+                <main id="company-main" class="flex-1 pb-16 sm:pb-20">
                     <slot />
                 </main>
 
                 <footer class="border-t border-border py-8 text-sm text-muted">
                     <p>&copy; {year} Cold Forge Works LLC. All rights reserved.</p>
+                    <p><a href="/website-privacy">Website privacy</a></p>
                 </footer>
             </div>
         </div>
     </body>
 </html>
+<style>
+    .company-skip-link { position: absolute; left: 16px; top: -120px; z-index: 10; background: white; color: #17231a; padding: 12px 20px; }
+    .company-skip-link:focus { top: 16px; outline: 3px solid #f0d879; outline-offset: 3px; }
+</style>

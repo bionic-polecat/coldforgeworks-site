@@ -1,0 +1,18 @@
+---
+import { analyticsEnabled } from '../lib/website-analytics.mjs';
+const enabled = analyticsEnabled(import.meta.env.PUBLIC_WEBSITE_ANALYTICS);
+---
+{enabled && <meta name="website-analytics-enabled" content="true" />}
+<script>
+    import { analyticsToken } from '../lib/website-analytics.mjs';
+    if (document.querySelector('meta[name="website-analytics-enabled"][content="true"]')) {
+        const token = analyticsToken(window.location.href, document.referrer, navigator.doNotTrack);
+        if (token) {
+            const beacon = document.createElement('script');
+            beacon.type = 'module';
+            beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
+            beacon.dataset.cfBeacon = JSON.stringify({ token, spa: false });
+            document.head.append(beacon);
+        }
+    }
+</script>

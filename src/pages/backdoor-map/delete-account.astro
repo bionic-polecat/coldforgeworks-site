@@ -1,0 +1,126 @@
+---
+import BackDoorMapLayout from '../../layouts/BackDoorMapLayout.astro';
+import { BACKDOOR_MAP_PUBLICATION } from '../../data/backdoor-map';
+import { deletionConfig } from '../../lib/backdoor-account-deletion.mjs';
+
+export const prerender = false;
+Astro.response.headers.set('Cache-Control', 'no-store');
+Astro.response.headers.set('Referrer-Policy', 'no-referrer');
+Astro.response.headers.set('X-Frame-Options', 'DENY');
+Astro.response.headers.set('Content-Security-Policy', "frame-ancestors 'none'; form-action 'self'; base-uri 'none'");
+const enabled = Boolean(deletionConfig(process.env, import.meta.env.DEV));
+---
+<BackDoorMapLayout title="Delete a BackDoor Map backup account | Cold Forge Works LLC"
+    description="Request deletion of your optional BackDoor Map account and cloud backups."
+    heading="Delete backup account" canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.deleteAccount} noIndex={true}>
+    <p>Delete your optional email account and its cloud backups without reinstalling the app.</p>
+    <ul>
+        <li>This permanently removes the account and its current and previous cloud backups.</li>
+        <li>Saved places on your phones and exported files are not deleted.</li>
+        <li>Community contributions use a separate identity and are not deleted by this process.</li>
+    </ul>
+    <p>Provider recovery copies and required security records may remain separately. See our <a href="/backdoor-map/privacy">Privacy Policy</a> and <a href="/backdoor-map/data-requests">Data Requests</a>.</p>
+    {enabled ? <section aria-labelledby="confirm-ownership" id="deletion-flow">
+        <h2 id="confirm-ownership">Confirm your account</h2>
+        <p>Use the email address for your backup account. We will send a fresh code. Never send that code, your notes or a recovery key to support.</p>
+        <form id="request-code">
+            <label for="account-email">Backup account email</label>
+            <input id="account-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+            <button type="submit">Send confirmation code</button>
+        </form>
+        <form id="confirm-deletion" hidden>
+            <p>Account email: <strong id="confirmation-email"></strong></p>
+            <p id="check-email">If an eligible account exists and email delivery is available, a code will arrive. Check spam too. If it does not arrive, wait before trying again or contact support.</p>
+            <label for="deletion-code">New code from your email</label>
+            <input id="deletion-code" name="code" type="password" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6,10}" minlength="6" maxlength="10" required />
+            <label class="acknowledgment"><input id="understand-deletion" type="checkbox" required />
+                <span>I understand that my account and all cloud backups will be permanently deleted. Local places and public contributions remain.</span></label>
+            <button type="submit" class="destructive">Permanently delete account and cloud backups</button>
+            <button id="cancel-deletion" type="button" class="secondary">Cancel or use another email</button>
+        </form>
+        <p id="deletion-status" role="status" aria-live="polite" tabindex="-1"></p>
+        <noscript><p>JavaScript is required for email confirmation. You can also use Account backup in the app or contact support for assistance.</p></noscript>
+    </section> : <section>
+        <h2>Online confirmation is not available yet</h2>
+        <p>You can request deletion in the app under App information &gt; Account backup &gt; Delete backup account, or contact support for assistance. Do not send an email code or private backup contents.</p>
+    </section>}
+    <section>
+        <h2>Need help?</h2>
+        <p>If you no longer control the email address, contact <a href={`mailto:${BACKDOOR_MAP_PUBLICATION.supportEmail}`}>{BACKDOOR_MAP_PUBLICATION.supportEmail}</a>. An unverified message alone cannot authorize deletion of another person's account.</p>
+    </section>
+</BackDoorMapLayout>
+<script>
+    const requestForm = document.querySelector<HTMLFormElement>('#request-code');
+    const confirmForm = document.querySelector<HTMLFormElement>('#confirm-deletion');
+    const status = document.querySelector<HTMLElement>('#deletion-status');
+    if (requestForm && confirmForm && status) {
+        const emailInput = document.querySelector<HTMLInputElement>('#account-email')!;
+        const codeInput = document.querySelector<HTMLInputElement>('#deletion-code')!;
+        const checkbox = document.querySelector<HTMLInputElement>('#understand-deletion')!;
+        const confirmationEmail = document.querySelector<HTMLElement>('#confirmation-email')!;
+        let email = '', busy = false;
+        const setBusy = (value: boolean) => {
+            busy = value;
+            for (const element of document.querySelectorAll<HTMLInputElement | HTMLButtonElement>('#deletion-flow input, #deletion-flow button')) element.disabled = value;
+            document.querySelector('#deletion-flow')?.setAttribute('aria-busy', String(value));
+        };
+        const send = async (body: object) => {
+            const response = await fetch('/api/backdoor-map/account-deletion', {
+                method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+                credentials: 'omit', cache: 'no-store', redirect: 'error', signal: AbortSignal.timeout(45000)
+            });
+            return { ok: response.ok, data: await response.json() };
+        };
+        requestForm.addEventListener('submit', async event => {
+            event.preventDefault(); if (busy) return;
+            email = emailInput.value.trim(); setBusy(true); status.textContent = 'Requesting a code...';
+            try {
+                const result = await send({ action: 'request_code', email });
+                if (!result.ok || result.data.status !== 'check_email') throw new Error();
+                confirmationEmail.textContent = email;
+                requestForm.hidden = true; confirmForm.hidden = false; status.textContent = '';
+            } catch { status.textContent = 'Could not request a code. Please try again later. No deletion was requested.'; }
+            finally { setBusy(false); if (!confirmForm.hidden) codeInput.focus(); }
+        });
+        confirmForm.addEventListener('submit', async event => {
+            event.preventDefault(); if (busy || !checkbox.checked) return;
+            const code = codeInput.value; codeInput.value = ''; setBusy(true);
+            status.textContent = 'Confirming ownership and requesting deletion. Please wait...';
+            try {
+                const result = await send({ action: 'delete_account', email, code, confirmation: 'DELETE' });
+                if (result.ok && result.data.deleted === true) {
+                    confirmForm.hidden = true; emailInput.value = ''; confirmationEmail.textContent = ''; email = '';
+                    status.textContent = 'Account and cloud backups deleted. Local saved places, exported files and public contributions are unchanged.';
+                } else if (result.data.error === 'confirmation_failed') {
+                    status.textContent = 'The code could not be confirmed. It may be incorrect or expired. Request a new code to try again.';
+                } else throw new Error();
+            } catch {
+                confirmForm.hidden = true;
+                status.textContent = 'Deletion could not be confirmed. Do not assume it succeeded or was canceled. Local places are unchanged. Contact support before creating another account.';
+            } finally { checkbox.checked = false; setBusy(false); status.focus(); }
+        });
+        document.querySelector('#cancel-deletion')?.addEventListener('click', () => {
+            if (busy) return;
+            confirmForm.hidden = true; requestForm.hidden = false; codeInput.value = ''; checkbox.checked = false; confirmationEmail.textContent = ''; email = '';
+            status.textContent = 'No deletion requested.'; emailInput.focus();
+        });
+        window.addEventListener('pagehide', () => { codeInput.value = ''; checkbox.checked = false; });
+    }
+</script>
+<style>
+    :global(h1) { letter-spacing: 0; }
+    :global(.legal-copy > ul) { margin-bottom: 1rem; }
+    #confirmation-email { overflow-wrap: anywhere; }
+    a { overflow-wrap: anywhere; }
+    form { display: grid; gap: 1rem; max-width: 34rem; margin-block: 1.5rem; }
+    [hidden] { display: none !important; }
+    label { font-weight: 600; }
+    input[type="email"], input[type="password"] { width: 100%; min-width: 0; min-height: 48px; border: 1px solid #718096; border-radius: 4px; padding: 12px; background: #fff; color: #17202a; font-size: 1rem; }
+    button { min-height: 48px; padding: 12px 16px; background: #cae5ff; color: #17202a; border-radius: 4px; font-weight: 600; cursor: pointer; white-space: normal; }
+    button:disabled { opacity: .6; cursor: wait; }
+    button.destructive { background: #ffcece; color: #5e1818; }
+    button.secondary { border: 1px solid #718096; color: inherit; background: transparent; }
+    .acknowledgment { display: flex; align-items: flex-start; gap: 12px; font-weight: 400; }
+    .acknowledgment input { width: 24px; height: 24px; flex-shrink: 0; margin-top: 3px; }
+    :is(input, button):focus-visible { outline: 3px solid #73baff; outline-offset: 3px; }
+</style>

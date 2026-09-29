@@ -2,6 +2,7 @@
 import BackDoorMapNav from '../components/BackDoorMapNav.astro';
 import { BACKDOOR_MAP_PUBLICATION } from '../data/backdoor-map';
 import CompanyLayout from './CompanyLayout.astro';
+import BackDoorSiteLayout from './BackDoorSiteLayout.astro';
 
 interface Props {
     title: string;
@@ -9,19 +10,24 @@ interface Props {
     heading: string;
     canonicalUrl: string;
     showDocumentStatus?: boolean;
+    releaseDraft?: boolean;
+    noIndex?: boolean;
 }
 
-const { title, description, heading, canonicalUrl, showDocumentStatus = false } = Astro.props;
+const { title, description, heading, canonicalUrl, showDocumentStatus = false, releaseDraft = false, noIndex = false } = Astro.props;
+const Layout = BACKDOOR_MAP_PUBLICATION.standalone ? BackDoorSiteLayout : CompanyLayout;
 ---
 
-<CompanyLayout title={title} description={description} canonicalUrl={canonicalUrl}>
+<Layout title={title} description={description} canonicalUrl={canonicalUrl} document={true} noIndex={releaseDraft || noIndex}>
     <header class="pb-10 sm:pb-12">
         <p class="section-label mb-4">
-            <a href="/backdoor-map" class="text-muted no-underline hover:text-accent">BackDoor Map</a>
+            <a href={BACKDOOR_MAP_PUBLICATION.homePath} class="text-muted no-underline hover:text-accent">BackDoor Map</a>
         </p>
         <h1>{heading}</h1>
         {
-            showDocumentStatus && (
+            releaseDraft ? (
+                <p class="document-meta">Release draft. Not yet effective or approved for publication.</p>
+            ) : showDocumentStatus && (
                 <p class="document-meta">
                     Effective date: {BACKDOOR_MAP_PUBLICATION.effectiveDate}
                 </p>
@@ -33,4 +39,8 @@ const { title, description, heading, canonicalUrl, showDocumentStatus = false } 
     <div class="legal-copy">
         <slot />
     </div>
-</CompanyLayout>
+</Layout>
+
+<style>
+    .legal-copy { overflow-wrap: anywhere; }
+</style>

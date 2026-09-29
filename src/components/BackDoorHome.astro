@@ -1,0 +1,130 @@
+---
+import BackDoorSiteLayout from '../layouts/BackDoorSiteLayout.astro';
+import { BACKDOOR_MAP_PUBLICATION as publication } from '../data/backdoor-map';
+const questions = [
+    ['Do I need community pins to use the app?', 'No. Save a building, place your own entrance pin and add private notes. Your information stays useful even where nobody else has contributed. Community reports are additional context, not guaranteed coverage.'],
+    ['What can I use offline?', 'Previously saved places, private pins, notes and last saved community entrance information remain available on your device. New address searches, fresh community information and contributions need a connection. Offline map tiles are not guaranteed.'],
+    ['Can my entrance differ from the community entrance?', 'Yes. Your personal entrance is independent of community consensus. Switch between My entrance and Community, and choose separately whether to contribute a pin or proposed correction. Your private notes are not public submissions.'],
+    ['Will my places survive a lost or replaced phone?', 'Local-only information can be lost with the device or an uninstall. Optional account backup is being prepared for release: enable it explicitly and check for a confirmed backup time before relying on recovery. An encrypted manual export also needs its separate recovery key.'],
+    ['Does it work outside New York?', 'The release candidate supports address search across the United States. Narrow the search by state, then include the city or ZIP when an address is ambiguous. Provider results and community coverage vary by location.'],
+    ['Can my company share places and notes?', 'Not in the first personal-use release. Company accounts and shared workspaces are future plans. Personal notes and backup accounts are not shared with employers or coworkers.']
+];
+---
+<BackDoorSiteLayout title="BackDoor Map | Saved entrances. Private notes."
+    description="Keep entrance locations, saved places and private notes for the buildings you visit. BackDoor Map is preparing a nationwide U.S. release for iPhone and Android."
+    canonicalUrl={publication.urls.overview}>
+    <section class="hero" aria-labelledby="product-name">
+        <img class="hero-image" src="/backdoor-map/service-entrance.webp" alt="" width="1672" height="941" fetchpriority="high" />
+        <div class="site-width hero-inner">
+            <p class="eyebrow">For the buildings you come back to</p>
+            <h1 id="product-name">BackDoor Map</h1>
+            <p class="hero-intro">Remember the entrance.<br />Keep the details.</p>
+            <p class="hero-copy">Your own entrance pins, saved places and private notes.<br class="desktop-break" /> Ready for the next delivery, service call or site visit.</p>
+            <div class="hero-actions"><a class="button button-yellow" href="#your-places">Explore the app</a><a class="hero-link" href="#release">Release plans</a></div>
+            <p class="hero-status">In development for iPhone &amp; Android</p>
+        </div>
+    </section>
+    <section id="your-places" class="section site-width" aria-labelledby="personal-value">
+        <div class="section-heading"><p class="eyebrow">Useful from your first saved place</p><h2 id="personal-value">Your places. Your information.</h2><p>A street address gets you to the building. Save the entrance and details you want to remember when you return.</p></div>
+        <div class="features">
+            <article><span class="number">01</span><h3>Save your entrance</h3><p>Place a personal pin independently of the community pin. Keep the entrance you use attached to your saved building.</p></article>
+            <article><span class="number">02</span><h3>Keep private notes</h3><p>Give a place a familiar name and keep useful reminders together. Your notes stay separate from public contributions.</p></article>
+            <article><span class="number">03</span><h3>Take saved details offline</h3><p>Open saved places, notes, personal pins and cached community information without a connection. No new search required.</p></article>
+        </div>
+        <p class="footnote">Saved information is available offline. New searches and live community updates need internet; map tiles may not be available offline.</p>
+    </section>
+    <section class="app-band" aria-labelledby="inside-app">
+        <div class="site-width section">
+            <div class="section-heading"><p class="eyebrow">A look inside</p><h2 id="inside-app">Find it. Save it. Remember it.</h2><p>Search across the U.S., keep your own information, and compare community reports when you need them.</p></div>
+            <div class="screens">
+                <figure><a href="/backdoor-map/search-preview.webp" aria-label="Open full-size address search preview"><img src="/backdoor-map/search-preview.webp" alt="Android development build finding 1500 Marilla Street in Dallas, Texas" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Search beyond your neighborhood</strong><span>Use a state filter or add a city to narrow the address.</span></figcaption></figure>
+                <figure><a href="/backdoor-map/community-preview.webp" aria-label="Open full-size community entrance preview"><img src="/backdoor-map/community-preview.webp" alt="My entrance and Community options above the Empire State Building entrance report" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Know which pin you are viewing</strong><span>Your personal entrance and the community report are separate.</span></figcaption></figure>
+                <figure><a href="/backdoor-map/notes-preview.webp" aria-label="Open full-size private notes preview"><img src="/backdoor-map/notes-preview.webp" alt="Private notes screen with disposable local test content" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Keep the useful details with the place</strong><span>Private notes remain available with your saved building.</span></figcaption></figure>
+            </div>
+            <p class="footnote">Actual Android development previews with test content. Final store release screens may differ.</p>
+        </div>
+    </section>
+    <section class="section site-width community-section" aria-labelledby="community-value">
+        <div><p class="eyebrow">Personal first. Better together.</p><h2 id="community-value">Your pin stays yours.<br />Sharing helps everyone.</h2></div>
+        <div><p>Your entrance does not have to agree with the public pin. Keep your own version private, or contribute what you know so the next person has a better starting point.</p><p>Community reports can be confirmed, disputed or corrected. They may be incomplete or outdated, and they never replace posted signs or permission to enter.</p><a class="text-link" href="/backdoor-map/community-standards">Read the community standards</a></div>
+    </section>
+    <section id="questions" class="questions-band" aria-labelledby="questions-heading">
+        <div class="site-width section questions-layout"><div><p class="eyebrow">Before you get started</p><h2 id="questions-heading">Good questions.<br />Straight answers.</h2></div><div class="questions">{questions.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div>
+    </section>
+    <section id="release" class="section site-width release" aria-labelledby="release-heading">
+        <div><p class="eyebrow">The first public release</p><h2 id="release-heading">Built for your everyday stops.</h2><p>Preparing for iPhone and Android. Public store downloads are not available yet; a release date has not been announced.</p></div>
+        <div class="release-price"><p class="price">$2.99 <span>planned U.S. launch price</span></p><p>One-time purchase for the personal-use app. Final availability and local prices will be shown in the stores. No unlimited cloud-storage promise.</p><a class="button button-green" href="/backdoor-map/support">Get support</a></div>
+    </section>
+</BackDoorSiteLayout>
+<style>
+    .hero { position: relative; background: #303b3e; color: white; overflow: hidden; }
+    .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .hero::after { content: ''; position: absolute; inset: 0; background: #0b19192e; pointer-events: none; }
+    .hero-inner { position: relative; z-index: 1; padding-block: 72px 62px; }
+    .eyebrow { font-size: .875rem; font-weight: 650; margin-bottom: 16px; }
+    .hero .eyebrow { color: #f5d966; }
+    h1 { font-size: 4rem; font-weight: 750; margin-bottom: 20px; max-width: 650px; }
+    .hero-intro { font-size: 2rem; line-height: 1.3; font-weight: 550; margin-bottom: 24px; }
+    .hero-copy { max-width: 520px; font-size: 1rem; color: #f0f3f1; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 12px 24px; border-radius: 4px; font-size: .95rem; font-weight: 650; text-decoration: none; }
+    .button-yellow { background: #f3d263; color: #253328; }
+    .button-yellow:hover { background: #ffe185; color: #17231a; }
+    .hero-link { color: white; font-size: .95rem; }
+    .hero-link:hover { color: #f3d263; }
+    .hero-status { font-size: .8rem; margin: 28px 0 0; color: #e1e7e4; }
+    .section { padding-block: 72px; }
+    .section-heading { max-width: 710px; margin-bottom: 40px; }
+    .section-heading h2 { margin-bottom: 20px; }
+    .section-heading > p:last-child { color: #51645b; max-width: 640px; }
+    .features { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 40px; }
+    .features article { border-top: 1px solid #b9ccbf; padding-top: 24px; }
+    .number { color: #145f4c; font-size: .875rem; font-weight: 650; display: block; margin-bottom: 24px; }
+    .features p { color: #51645b; margin-bottom: 0; }
+    .footnote { margin: 32px 0 0; font-size: .85rem; color: #5a6a61; max-width: 760px; }
+    .app-band { background: #edf3ef; border-block: 1px solid #dce6df; }
+    .screens { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 48px; }
+    figure { margin: 0; min-width: 0; }
+    figure > a { display: block; max-width: 275px; margin-inline: auto; }
+    figure img { border: 1px solid #c7d2cc; border-radius: 8px; background: #fff; width: 100%; height: auto; aspect-ratio: 648/1404; }
+    figcaption { margin-top: 24px; font-size: .95rem; }
+    figcaption strong, figcaption span { display: block; }
+    figcaption strong { margin-bottom: 8px; }
+    figcaption span { color: #51645b; }
+    .community-section { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .community-section > div:last-child { color: #51645b; }
+    .text-link { font-weight: 600; }
+    .questions-band { background: #153f35; color: #fff; }
+    .questions-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; }
+    .questions-layout .eyebrow { color: #f3d263; }
+    details { border-bottom: 1px solid #638175; }
+    details:first-child { border-top: 1px solid #638175; }
+    summary { cursor: pointer; padding: 22px 8px 22px 0; font-weight: 550; }
+    details p { color: #e1eae4; padding-bottom: 8px; }
+    .release { display: grid; grid-template-columns: 1.25fr 1fr; gap: 72px; }
+    .release > div > p:not(.eyebrow):not(.price) { color: #51645b; }
+    .release-price { border-left: 2px solid #d1ded5; padding-left: 40px; }
+    .price { font-size: 2.5rem; line-height: 1.2; font-weight: 650; margin-bottom: 16px; }
+    .price span { display: block; font-size: .875rem; font-weight: 400; margin-top: 8px; }
+    .button-green { color: #fff; background: #145f4c; }
+    .button-green:hover { color: #fff; background: #0c4335; }
+    @media (min-width: 1600px) { .hero-inner { padding-block: 88px 76px; } }
+    @media (max-width: 760px) {
+        .hero-image { object-position: 30% center; }
+        .hero::after { background: #0b191960; }
+        .hero-inner { padding-block: 44px 40px; }
+        h1 { font-size: 2.75rem; }
+        .hero-intro { font-size: 1.6rem; }
+        .hero-copy { max-width: 400px; }
+        .desktop-break { display: none; }
+        .section { padding-block: 44px; }
+        .features, .community-section, .questions-layout, .release { grid-template-columns: 1fr; gap: 28px; }
+        .features { gap: 24px; }
+        .number { margin-bottom: 12px; }
+        .screens { grid-template-columns: 1fr; gap: 40px; }
+        .screens figure { max-width: 400px; margin-inline: auto; }
+        figcaption { margin-top: 24px; }
+        .release-price { border-left: 0; border-top: 1px solid #d1ded5; padding: 24px 0 0; }
+    }
+    @media (max-width: 400px) { h1 { font-size: 2.125rem; } .hero-actions { gap: 18px; } }
+</style>

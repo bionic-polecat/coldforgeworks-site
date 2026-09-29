@@ -1,0 +1,19 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    canonicalUrl?: string;
+    noIndex?: boolean;
+    imageUrl?: string;
+}
+const { title, description, canonicalUrl, noIndex = false, imageUrl } = Astro.props;
+---
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+{noIndex && <meta name="robots" content="noindex, follow" />}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+{imageUrl && <meta property="og:image:alt" content="Illustrated service entrance for BackDoor Map" />}
+<meta name="twitter:card" content={imageUrl ? 'summary_large_image' : 'summary'} />

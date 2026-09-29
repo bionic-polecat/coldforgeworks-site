@@ -11,25 +11,28 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
     heading="Privacy Policy"
     canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.privacy}
     showDocumentStatus
+    releaseDraft
 >
     <section aria-labelledby="privacy-overview">
         <h2 id="privacy-overview">Overview</h2>
         <p>
             This policy explains how {BACKDOOR_MAP_PUBLICATION.operatorName} handles information when you use BackDoor
-            Map. The app does not require an account or login. It does use an anonymous installation identifier so
-            contributions from one installation can be recognized, limited, and moderated.
+            Map. You can use local saved places and the community map without an account. You may choose an email
+            account for backup and recovery. Community contributions use a separate random, pseudonymous installation
+            identifier so contributions from one installation can be recognized, limited, and moderated.
         </p>
     </section>
 
     <section aria-labelledby="information-collected">
         <h2 id="information-collected">Information we collect</h2>
 
-        <h3>Anonymous installation identifier</h3>
+        <h3>Installation identifier</h3>
         <p>
             The app creates a random identifier and stores it on your device. It is sent with contributions and may be
             associated with entrance pins, votes, corrections, correction votes, private reviewer notes, private
             reports, legal acceptances, contribution restrictions, and moderation records. It is not a user account,
-            but it can distinguish one app installation from another.
+            but it can distinguish one app installation from another and link its contributions. Signing into backup
+            does not turn this identifier into a public profile or proof of a person's identity.
         </p>
 
         <h3>Crowdsourced map contributions</h3>
@@ -59,18 +62,35 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
         <h3>Address search</h3>
         <p>
             Address text you search for is sent to a Supabase Edge Function and then to LocationIQ to return address
-            suggestions. Supabase may also receive the anonymous installation identifier for rate limiting; that
+            suggestions. Supabase may also receive the installation identifier for rate limiting; that
             identifier is not added to the LocationIQ autocomplete request. BackDoor Map does not intentionally save
             search text in its product database, although service providers may keep ordinary request logs under their
             own practices.
         </p>
 
-        <h3>Favorites and Recents</h3>
+        <h3>Saved places on your device</h3>
         <p>
-            Favorites, Recents, saved building names, selected addresses, coordinates, and selection history are kept
-            in local app storage on your device. They are not synced to a BackDoor Map account or Supabase table. You
-            can remove individual Recents, clear non-favorite Recents, or remove Favorites in the app; uninstalling the
-            app generally removes its local storage according to your device platform's behavior.
+            Favorites, Recents, saved names, addresses, coordinates, private notes, personal entrance pins and last
+            saved community entrance information are stored on your device. Saved text and coordinates remain
+            available offline; new searches and uncached map imagery need internet. Private notes are not community
+            reviewer notes. A personal pin is not a public contribution unless you separately submit it through the
+            community workflow.
+        </p>
+
+        <h3>Optional account backup</h3>
+        <p>
+            If you choose account backup, we collect your email address for one-time sign-in codes and maintain
+            authenticated sessions. Signing in alone does not upload saved places. After you enable backup, the app
+            uploads snapshots containing saved addresses, coordinates, names, notes, favorite/recent state, personal
+            pins, saved community information and selection history, with an account-linked device-backup identifier,
+            device label, revisions and timestamps. Check the successful backup time before relying on recovery;
+            changes made offline or while the app is not running may not have reached the server.
+        </p>
+        <p>
+            Backups are private to your account, not public or shared with coworkers or employers through this
+            feature. Restore is an explicit, previewed import rather than continuous cross-device synchronization.
+            It adds missing places and preserves conflicting local entries. Older snapshots can retain places you
+            later removed locally.
         </p>
 
         <h3>Legal, abuse-prevention, and moderation records</h3>
@@ -80,6 +100,14 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
             history, moderation actions, and fixed-window rate-limit counters. Device subjects used in rate counters
             are hashed; other contribution, acceptance, and moderation records may retain the installation identifier
             where needed to provide or protect the service.
+        </p>
+        <p>
+            To avoid repeating a contribution when a response is lost, we retain a hashed installation identifier,
+            random request identifier, submitted-action fingerprint, saved response and timestamp. Saved responses
+            can contain public addresses, coordinates, record identifiers and action outcomes. These retry records
+            are pseudonymous, not anonymous, and do not include a separate copy of the raw request payload. Public
+            contributions and moderation records have their own storage. Private saved-place notes are not uploaded
+            through this contribution-retry process.
         </p>
     </section>
 
@@ -91,7 +119,8 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
             <li>remember an installation's vote or contribution state;</li>
             <li>review private reports and enforce the Community Standards;</li>
             <li>limit spam, abuse, duplicate activity, and excessive requests;</li>
-            <li>record acceptance of current legal documents; and</li>
+            <li>record acceptance of current legal documents;</li>
+            <li>provide optional email sign-in, backup, recovery and account deletion; and</li>
             <li>diagnose reliability, security, and support issues.</li>
         </ul>
     </section>
@@ -99,9 +128,18 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
     <section aria-labelledby="sharing-processors">
         <h2 id="sharing-processors">Service providers and disclosure</h2>
         <p>
-            Supabase hosts the app's database, RPCs, and Edge Functions. LocationIQ processes address-search queries.
+            Supabase hosts the app's database, authentication, sessions, cloud backups, RPCs and Edge Functions.
+            Amazon Simple Email Service delivers requested account codes using your email address and email content.
+            LocationIQ processes address-search queries.
             The map shown in the app uses the platform map provider: Apple Maps on iOS and Google Maps on Android.
             Those providers handle information under their own terms and privacy policies.
+        </p>
+        <p>
+            Our website host processes requests to these pages and the account-deletion form. The form sends your
+            email address and fresh code to our server for ownership verification; the server calls the existing
+            account-deletion service and does not return account session tokens to the browser. Providers may process
+            ordinary request, delivery and security metadata. Support messages are processed separately when you
+            contact us; do not include sign-in codes or private backup contents.
         </p>
         <p>
             We may disclose information when reasonably necessary to comply with law, protect rights or safety,
@@ -114,7 +152,7 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
         <h2 id="analytics-tracking">Analytics, advertising, and tracking</h2>
         <p>
             BackDoor Map currently has no third-party client analytics or crash-reporting SDK. It has no advertising
-            SDK and no behavioral advertising. The app does not use accounts or public profiles. This website does not
+            SDK and no behavioral advertising. Optional backup accounts do not create public profiles. This website does not
             add analytics, tracking cookies, or advertising through these BackDoor Map pages.
         </p>
     </section>
@@ -122,8 +160,21 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
     <section aria-labelledby="retention-deletion">
         <h2 id="retention-deletion">Retention and deletion</h2>
         <p>
-            Local Favorites and Recents remain on the device until you remove them, clear them where the app offers
+            Local saved places remain on the device until you remove them, clear them where the app offers
             that control, or remove the app, subject to device backup and platform behavior.
+        </p>
+        <p>
+            Pausing backup or signing out does not delete cloud backups or local places. Deleting a device backup
+            removes its current and previous active snapshots. Deleting your backup account removes the account and
+            its active cloud backups after fresh email confirmation. Use App information &gt; Account backup &gt;
+            Delete backup account, or <a href="/backdoor-map/delete-account">request account deletion on this website</a>
+            without reinstalling. Local places, exported files and separately submitted community contributions
+            remain. Removing a place locally does not erase it from an older cloud snapshot.
+        </p>
+        <p>
+            Provider disaster-recovery copies and required security or audit records can remain separately from
+            active application records. Account deletion is not a promise of immediate removal from every recovery
+            copy. A support request does not authorize us to disclose or delete another person's account.
         </p>
         <p>
             Backend records are retained for as long as reasonably needed to operate and protect the service, preserve
@@ -134,8 +185,9 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
         </p>
         <p>
             You may request access, correction, or deletion where applicable by following the
-            <a href="/backdoor-map/data-requests">Data Requests process</a>. Because there are no accounts, we may need
-            enough detail to locate a contribution associated with an anonymous installation. We cannot promise to
+            <a href="/backdoor-map/data-requests">Data Requests process</a>. Backup-account ownership is verified
+            separately from community contributions. We may need enough detail to locate a contribution associated
+            with an installation. We cannot promise to
             identify or delete records that cannot be reliably linked to the information you provide. Some records may
             be retained for fraud prevention, legal compliance, security, moderation history, or as aggregate or
             anonymized information.
@@ -145,8 +197,18 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
     <section aria-labelledby="security-children">
         <h2 id="security-children">Security and children</h2>
         <p>
-            We use access controls and privacy-reducing interfaces intended to protect nonpublic records. No system is
-            perfectly secure, and anonymous installation identifiers should not be treated as strong authentication.
+            The app encrypts saved places on the device with a key held in platform secure storage. Cloud backups
+            use encrypted network transport and provider-managed storage protection and access controls. They are
+            not end-to-end encrypted: authorized service operators can access server-held content. Someone with
+            access to your email account may gain access to backup recovery. Do not store passwords, door codes,
+            alarm details or highly sensitive personal or employer information in notes.
+        </p>
+        <p>
+            Manual encrypted exports use a separate recovery key. Keep the file and key safe and separate; we cannot
+            reset a lost export key. The key is not included in the export file or account backup. Older plaintext
+            exports remain plaintext. Encryption does not guarantee erasure of earlier storage, operating-system
+            backups, screenshots or exported copies. No system is perfectly secure, and installation identifiers
+            are not strong authentication.
         </p>
         <p>
             BackDoor Map is a general utility and is not directed to children under 13. We do not knowingly seek

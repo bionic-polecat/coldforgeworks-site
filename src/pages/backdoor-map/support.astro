@@ -10,6 +10,7 @@ const description = 'Support information and contact details for BackDoor Map.';
     description={description}
     heading="Support"
     canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.support}
+    releaseDraft
 >
     <section aria-labelledby="support-contact">
         <h2 id="support-contact">Contact BackDoor Map support</h2>
@@ -32,8 +33,31 @@ const description = 'Support information and contact details for BackDoor Map.';
         </ul>
         <p>
             Do not email passwords, door or access codes, alarm details, private entry instructions, or other sensitive
-            building information. BackDoor Map does not have user passwords or accounts.
+            building information. Optional backup accounts use email codes, not a BackDoor Map password. Never send
+            support a sign-in code, recovery key, session token, private note or backup file. Redact screenshots.
         </p>
+    </section>
+
+    <section aria-labelledby="backup-help">
+        <h2 id="backup-help">Saved places and backup help</h2>
+        <p>
+            If your places are still on your phone, keep the app installed. Signing in alone does not enable backup;
+            enable it in Account backup and check the successful backup time. Without a successful cloud backup or
+            usable manual export, reinstalling or losing your phone can lose local saved data.
+        </p>
+        <p>
+            To recover a confirmed backup, sign in with the same email, choose the intended device backup and review
+            the restore preview. Restore preserves conflicting local places; it is not continuous device-to-device
+            sync. We cannot reset a lost manual-export recovery key.
+        </p>
+        <p>
+            If a code does not arrive, check the address and spam folder, then wait before requesting another.
+            Include your platform, app version, approximate time and non-sensitive error when contacting support.
+            Do not send the code itself. For an uncertain deletion result, contact support before creating another
+            account. Local places are not deleted by deleting a backup account.
+        </p>
+        <p><a href="/backdoor-map/delete-account">Delete a backup account and cloud backups</a>, or use
+            <a href="/backdoor-map/data-requests">Data Requests</a> for other information requests.</p>
     </section>
 
     <section aria-labelledby="support-resources">

@@ -1,0 +1,18 @@
+---
+import { BACKDOOR_MAP_PUBLICATION as publication } from '../data/backdoor-map';
+import CompanyLayout from '../layouts/CompanyLayout.astro';
+import BackDoorSiteLayout from '../layouts/BackDoorSiteLayout.astro';
+const Layout = publication.standalone ? BackDoorSiteLayout : CompanyLayout;
+---
+<Layout title="Website privacy | Cold Forge Works LLC" description="How our marketing websites handle visits, hosting and optional aggregate analytics."
+    canonicalUrl={new URL('/website-privacy', publication.urls.overview).href} document={true}>
+    <h1>Website privacy</h1>
+    <p>Website notice updated September 28, 2026. This notice covers coldforgeworks.com and backdoormap.com, operated by Cold Forge Works LLC. It does not replace the separate mobile-app privacy policy.</p>
+    <h2>Hosting and basic traffic measurement</h2>
+    <p>Netlify hosts these websites and processes normal connection information, such as IP addresses and request details, to deliver and protect them.</p>
+    <p>We use Cloudflare Web Analytics on the public homepages to understand visits and page performance. The analytics does not use cookies or local storage to recognize you, and we do not use it for advertising, session replay or recording form entries. Cloudflare receives the requests needed to provide this service. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a> and <a href="https://www.netlify.com/privacy/">Netlify's privacy policy</a>.</p>
+    <p>We do not load this analytics on account or deletion pages, app-policy pages, local previews, or URLs containing query strings or fragments. We also skip it when the browser sends a Do Not Track preference. Browser blocking and these exclusions mean the reports are estimates, not a complete count of people.</p>
+    <h2>Contact and external links</h2>
+    <p>If you email support, we receive what you send and use it to respond. Never send passwords, sign-in codes, backup keys or private building access instructions. Other linked websites have their own privacy practices.</p>
+    <p>Questions: <a href="mailto:support@coldforgeworks.com">support@coldforgeworks.com</a>.</p>
+</Layout>
