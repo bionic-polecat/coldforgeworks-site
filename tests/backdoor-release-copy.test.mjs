@@ -14,14 +14,18 @@ test('account-aware pages cannot silently retain the old no-account claims', () 
   }
 });
 
-test('changed policy pages stay explicitly draft without inventing an effective date', () => {
-  for (const name of pages) assert.match(source(name), /\breleaseDraft\s*\n/, name);
+test('published policy pages show the approved effective date and no draft marker', () => {
+  for (const name of pages) {
+    assert.doesNotMatch(source(name), /\breleaseDraft\b/, name);
+    assert.match(source(name), /showDocumentStatus/, name);
+  }
   const layout = readFileSync(new URL('../src/layouts/BackDoorMapLayout.astro', import.meta.url), 'utf8');
   assert.match(layout, /releaseDraft \? \([\s\S]*?Not yet effective or approved for publication/);
   assert.match(layout, /\) : showDocumentStatus &&/);
   const data = readFileSync(new URL('../src/data/backdoor-map.ts', import.meta.url), 'utf8');
   assert.match(data, /effectiveDate: 'July 18, 2026'/);
   assert.doesNotMatch(source('community-standards'), /\breleaseDraft\b/);
+  assert.doesNotMatch(source('delete-account'), /noIndex=\{true\}/);
 });
 
 test('shared legal copy can wrap long contact links at enlarged mobile text sizes', () => {

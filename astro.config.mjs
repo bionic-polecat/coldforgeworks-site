@@ -9,6 +9,8 @@ const standalone = websiteBrand(process.env.PUBLIC_SITE_BRAND) === 'backdoor-map
 export default defineConfig({
     site: standalone ? 'https://backdoormap.com' : 'https://coldforgeworks.com',
     output: 'static',
+    // Preserve spacing in the already-published policy and support text.
+    compressHTML: true,
     vite: {
         plugins: [tailwindcss()]
     },

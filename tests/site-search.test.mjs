@@ -27,9 +27,9 @@ test('untrusted brand values cannot enter sitemap XML or robots', () => {
     }
 });
 
-test('draft and account-action pages propagate noindex through both layouts', () => {
-    assert.match(read('src/layouts/BackDoorMapLayout.astro'), /noIndex=\{releaseDraft \|\| noIndex\}/);
-    assert.match(read('src/pages/backdoor-map/delete-account.astro'), /noIndex=\{true\}/);
+test('layout still supports draft/noindex controls while published account pages are indexable', () => {
+  assert.match(read('src/layouts/BackDoorMapLayout.astro'), /noIndex=\{releaseDraft \|\| noIndex\}/);
+  assert.doesNotMatch(read('src/pages/backdoor-map/delete-account.astro'), /noIndex=\{true\}/);
     for (const name of ['CompanyLayout', 'BackDoorSiteLayout']) {
         assert.match(read(`src/layouts/${name}.astro`), /<SearchMetadata[^>]*\{noIndex\}/);
     }
