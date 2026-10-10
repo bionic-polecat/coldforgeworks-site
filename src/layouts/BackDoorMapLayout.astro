@@ -10,11 +10,12 @@ interface Props {
     heading: string;
     canonicalUrl: string;
     showDocumentStatus?: boolean;
+    documentUpdatedDate?: string;
     releaseDraft?: boolean;
     noIndex?: boolean;
 }
 
-const { title, description, heading, canonicalUrl, showDocumentStatus = false, releaseDraft = false, noIndex = false } = Astro.props;
+const { title, description, heading, canonicalUrl, showDocumentStatus = false, documentUpdatedDate, releaseDraft = false, noIndex = false } = Astro.props;
 const Layout = BACKDOOR_MAP_PUBLICATION.standalone ? BackDoorSiteLayout : CompanyLayout;
 ---
 
@@ -30,6 +31,7 @@ const Layout = BACKDOOR_MAP_PUBLICATION.standalone ? BackDoorSiteLayout : Compan
             ) : showDocumentStatus && (
                 <p class="document-meta">
                     Effective date: {BACKDOOR_MAP_PUBLICATION.effectiveDate}
+                    {documentUpdatedDate && <> · Last updated: {documentUpdatedDate}</>}
                 </p>
             )
         }
