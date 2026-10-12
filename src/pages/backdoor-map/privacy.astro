@@ -11,7 +11,7 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
     heading="Privacy Policy"
     canonicalUrl={BACKDOOR_MAP_PUBLICATION.urls.privacy}
     showDocumentStatus
-    documentUpdatedDate="October 10, 2026"
+    documentUpdatedDate="October 12, 2026"
 >
     <section aria-labelledby="privacy-overview">
         <h2 id="privacy-overview">Overview</h2>
@@ -135,6 +135,19 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
             Those providers handle information under their own terms and privacy policies.
         </p>
         <p>
+            LocationIQ receives address-search queries through our server proxy. The proxy does not forward your
+            account email, private notes, installation identifier or device IP address to LocationIQ. LocationIQ
+            says normal service operation does not store API request content, but request data can remain in
+            security access logs for up to 14 days. Customer-requested support tracing can retain request details
+            until the ticket is resolved, up to 30 days; we have not enabled that tracing. Its processing includes
+            operation, support, security, service improvement, misuse prevention and de-identified aggregate statistics.
+        </p>
+        <p>
+            We also store encrypted server recovery copies in protected local storage and private Google Drive.
+            These copies can include account records and private cloud-backup data. They are separate from the
+            snapshots you manage in Account backup, and access is restricted.
+        </p>
+        <p>
             Our website host processes requests to these pages and the account-deletion form. The form sends your
             email address and fresh code to our server for ownership verification; the server calls the existing
             account-deletion service and does not return account session tokens to the browser. Providers may process
@@ -178,6 +191,14 @@ const description = 'Privacy Policy for the BackDoor Map mobile app operated by 
             Delete backup account, or <a href="/backdoor-map/delete-account">request account deletion on this website</a>
             without reinstalling. Local places, exported files and separately submitted community contributions
             remain. Removing a place locally does not erase it from an older cloud snapshot.
+        </p>
+        <p>
+            We attempt server recovery backups daily and keep one verified copy for each of the latest seven days
+            with a successful backup. After a new copy is verified, older local copies are removed and older Drive
+            copies move to Trash. Under <a href="https://support.google.com/drive/answer/2375102">Google Drive's policy</a>,
+            copies normally remain in Trash for another 30 days. Failed or missed backups can extend retention.
+            Deleting an account does not immediately erase it from these older encrypted copies. Recovery copies
+            are restricted storage, not active accounts.
         </p>
         <p>
             Provider disaster-recovery copies and required security or audit records can remain separately from
