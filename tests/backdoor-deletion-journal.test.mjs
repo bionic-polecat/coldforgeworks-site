@@ -56,6 +56,9 @@ test('journal configuration separates production and DEV and rejects privileged 
         assert.equal(deletionJournalConfig({...env,...changes}),null);
     }
     assert.equal(deletionJournalConfig({...env,BACKDOOR_MAP_JOURNAL_TARGET:'beta',BACKDOOR_MAP_JOURNAL_ANON_KEY:anon('beta')},true),null);
+    assert.equal(deletionJournalConfig({...env,CONTEXT:undefined,BACKDOOR_MAP_JOURNAL_CONTEXT:'deploy-preview'}).target,'dev');
+    assert.equal(deletionJournalConfig({...env,CONTEXT:undefined,BACKDOOR_MAP_JOURNAL_CONTEXT:'production'}),null);
+    assert.equal(deletionJournalConfig({...env,CONTEXT:'production',BACKDOOR_MAP_JOURNAL_CONTEXT:'deploy-preview'}),null);
 });
 test('journal rejects methods, missing auth and malformed input without storage or upstream requests',async()=>{
     const f=fixture();

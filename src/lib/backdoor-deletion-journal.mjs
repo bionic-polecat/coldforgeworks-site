@@ -18,8 +18,11 @@ function isAnonKey(key,projectRef) {
 export function deletionJournalConfig(env,allowLocal=false) {
     if(env.BACKDOOR_MAP_JOURNAL_ENABLED!=='true') return null;
     const target=env.BACKDOOR_MAP_JOURNAL_TARGET;
-    if(target==='beta' ? env.CONTEXT!=='production' :
-        target!=='dev' || (!allowLocal && env.CONTEXT!=='deploy-preview')) return null;
+    // Netlify's Lambda-compatible runtime does not supply build-only CONTEXT.
+    // The explicit fallback is itself scoped to the matching deploy context.
+    const context=env.CONTEXT??env.BACKDOOR_MAP_JOURNAL_CONTEXT;
+    if(target==='beta' ? context!=='production' :
+        target!=='dev' || (!allowLocal && context!=='deploy-preview')) return null;
     const key=env.BACKDOOR_MAP_JOURNAL_ANON_KEY;
     if(!isAnonKey(key,projects[target])) return null;
     return {target,projectRef:projects[target],url:`https://${projects[target]}.supabase.co`,key};
