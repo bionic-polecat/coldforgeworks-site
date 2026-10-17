@@ -33,7 +33,7 @@ test('standalone build uses only the owned domain and preserves route compatibil
 test('launch preview does not invent store links, current availability or unlimited backup', () => {
     const home = read('src/components/BackDoorHome.astro');
     assert.match(home, /Public store downloads are not available yet/);
-    assert.match(home, /\$2\.99/);
+    assert.match(home, /\$4\.99/);
     assert.match(home, /planned U.S. launch price/);
     assert.match(home, /Offline map tiles are not guaranteed/);
     assert.match(home, /Actual Android development previews with test content/);
