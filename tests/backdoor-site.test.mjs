@@ -30,11 +30,14 @@ test('standalone build uses only the owned domain and preserves route compatibil
     }
 });
 
-test('launch preview does not invent store links, current availability or unlimited backup', () => {
+test('Android launch links the verified store while iPhone review and backup limits remain clear', () => {
     const home = read('src/components/BackDoorHome.astro');
-    assert.match(home, /Public store downloads are not available yet/);
+    assert.match(home, /Android app is available in the United States/);
     assert.match(home, /\$4\.99/);
-    assert.match(home, /planned U.S. launch price/);
+    assert.match(home, /U.S. one-time price/);
+    assert.match(home, /iPhone version is awaiting App Store review; its release date has not been announced/);
+    assert.equal((home.match(/href=\{googlePlayUrl\}/g) || []).length, 2);
+    assert.match(read('src/data/backdoor-map.ts'), /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.coldforgeworks\.backdoormap/);
     assert.match(home, /Offline map tiles are not guaranteed/);
     assert.match(home, /Actual Android development previews with test content/);
     assert.doesNotMatch(home, /apps\.apple\.com|play\.google\.com|<form|<script|download now/i);
@@ -59,11 +62,13 @@ test('company product link stays on the working overview until dedicated publica
     for (const value of ['TRUE', 'yes', 'https://other.example', null, true]) assert.throws(() => backdoorWebsiteLink(value));
 });
 
-test('company copy links the live community and distinguishes the unreleased app', () => {
+test('company copy distinguishes the Android launch from the iPhone still in review', () => {
     const home = read('src/components/CompanyHome.astro');
     assert.match(home, /href="https:\/\/reviveme\.gg\/"/);
     assert.doesNotMatch(home, /ReviveMe|Reviveme|REVIVEME/);
-    assert.match(home, /Public app downloads are not available yet/);
+    assert.match(home, /Android is available on Google Play in the United States for \$4\.99, a one-time purchase/);
+    assert.match(home, /iPhone version is awaiting App Store review/);
+    assert.match(home, /href=\{googlePlayUrl\}/);
     assert.match(home, /Community website \/ Available now/);
     assert.match(home, /private notes/);
     assert.match(home, /previously saved/i);
