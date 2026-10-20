@@ -1,0 +1,10 @@
+{
+  "approvedSourceDate": "2026-10-12",
+  "policies": [
+    { "path": "src/pages/backdoor-map/privacy.astro", "sha256": "efa9e91c9667934566761e200046255da54184b3dfab1a76e6e9969c1e4738b1" },
+    { "path": "src/pages/backdoor-map/terms.astro", "sha256": "69a9864644245070dc21bc1beedd60d8034388349b5a5583ac50fa3b15a7260d" },
+    { "path": "src/pages/backdoor-map/support.astro", "sha256": "2ff0caa73eb0612a7321cc32ac3aabe046b68289dca69959d0a61b4b5d466f16" },
+    { "path": "src/pages/backdoor-map/data-requests.astro", "sha256": "536d592d37296263b4a8735cedea09b51d60091e15da85e01c783d631f0d83bd" },
+    { "path": "src/pages/backdoor-map/community-standards.astro", "sha256": "1f86d3b7b8c5a3dffbcd8af173076556d763d512912311f0ee626a3c1bf4ace2" }
+  ]
+}

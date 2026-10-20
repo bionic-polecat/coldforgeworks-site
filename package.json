@@ -6,7 +6,8 @@
     "test": "node --test tests/*.test.mjs",
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/build-production.mjs",
+    "build:backdoor": "node scripts/build-production.mjs backdoor-map",
     "preview": "astro preview",
     "astro": "astro"
   },
