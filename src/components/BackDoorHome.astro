@@ -1,17 +1,17 @@
 ---
 import BackDoorSiteLayout from '../layouts/BackDoorSiteLayout.astro';
-import { BACKDOOR_MAP_PUBLICATION as publication } from '../data/backdoor-map';
+import { BACKDOOR_MAP_PUBLICATION as publication, BACKDOOR_MAP_GOOGLE_PLAY_URL as googlePlayUrl } from '../data/backdoor-map';
 const questions = [
     ['Do I need community pins to use the app?', 'No. Save a building, place your own entrance pin and add private notes. Your information stays useful even where nobody else has contributed. Community reports are additional context, not guaranteed coverage.'],
     ['What can I use offline?', 'Previously saved places, private pins, notes and last saved community entrance information remain available on your device. New address searches, fresh community information and contributions need a connection. Offline map tiles are not guaranteed.'],
     ['Can my entrance differ from the community entrance?', 'Yes. Your personal entrance is independent of community consensus. Switch between My entrance and Community, and choose separately whether to contribute a pin or proposed correction. Your private notes are not public submissions.'],
-    ['Will my places survive a lost or replaced phone?', 'Local-only information can be lost with the device or an uninstall. Optional account backup is being prepared for release: enable it explicitly and check for a confirmed backup time before relying on recovery. An encrypted manual export also needs its separate recovery key.'],
-    ['Does it work outside New York?', 'The release candidate supports address search across the United States. Narrow the search by state, then include the city or ZIP when an address is ambiguous. Provider results and community coverage vary by location.'],
+    ['Will my places survive a lost or replaced phone?', 'Local-only information can be lost with the device or an uninstall. Optional account backup is available: enable it explicitly and check for a confirmed backup time before relying on recovery. An encrypted manual export also needs its separate recovery key.'],
+    ['Does it work outside New York?', 'The Android app supports address search across the United States. Narrow the search by state, then include the city or ZIP when an address is ambiguous. Provider results and community coverage vary by location.'],
     ['Can my company share places and notes?', 'Not in the first personal-use release. Company accounts and shared workspaces are future plans. Personal notes and backup accounts are not shared with employers or coworkers.']
 ];
 ---
 <BackDoorSiteLayout title="BackDoor Map | Saved entrances. Private notes."
-    description="Keep entrance locations, saved places and private notes for the buildings you visit. BackDoor Map is preparing a nationwide U.S. release for iPhone and Android."
+    description="Keep entrance locations, saved places and private notes for the buildings you visit. BackDoor Map is available for Android in the U.S.; the iPhone version is awaiting App Store review."
     canonicalUrl={publication.urls.overview}>
     <section class="hero" aria-labelledby="product-name">
         <img class="hero-image" src="/backdoor-map/service-entrance.webp" alt="" width="1672" height="941" fetchpriority="high" />
@@ -20,8 +20,8 @@ const questions = [
             <h1 id="product-name">BackDoor Map</h1>
             <p class="hero-intro">Remember the entrance.<br />Keep the details.</p>
             <p class="hero-copy">Your own entrance pins, saved places and private notes.<br class="desktop-break" /> Ready for the next delivery, service call or site visit.</p>
-            <div class="hero-actions"><a class="button button-yellow" href="#your-places">Explore the app</a><a class="hero-link" href="#release">Release plans</a></div>
-            <p class="hero-status">In development for iPhone &amp; Android</p>
+            <div class="hero-actions"><a class="button button-yellow" href={googlePlayUrl}>Get it on Google Play</a><a class="hero-link" href="#your-places">Explore the app</a><a class="hero-link" href="#release">Availability</a></div>
+            <p class="hero-status">Available for Android in the U.S. · iPhone version awaiting App Store review</p>
         </div>
     </section>
     <section id="your-places" class="section site-width" aria-labelledby="personal-value">
@@ -52,8 +52,8 @@ const questions = [
         <div class="site-width section questions-layout"><div><p class="eyebrow">Before you get started</p><h2 id="questions-heading">Good questions.<br />Straight answers.</h2></div><div class="questions">{questions.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div>
     </section>
     <section id="release" class="section site-width release" aria-labelledby="release-heading">
-        <div><p class="eyebrow">The first public release</p><h2 id="release-heading">Built for your everyday stops.</h2><p>Preparing for iPhone and Android. Public store downloads are not available yet; a release date has not been announced.</p></div>
-        <div class="release-price"><p class="price">$4.99 <span>planned U.S. launch price</span></p><p>One-time purchase for the personal-use app. Final availability and local prices will be shown in the stores. No unlimited cloud-storage promise.</p><a class="button button-green" href="/backdoor-map/support">Get support</a></div>
+        <div><p class="eyebrow">Available on Google Play</p><h2 id="release-heading">Built for your everyday stops.</h2><p>The Android app is available in the United States. The iPhone version is awaiting App Store review; its release date has not been announced.</p></div>
+        <div class="release-price"><p class="price">$4.99 <span>U.S. one-time price</span></p><p>One-time purchase for the personal-use Android app. Check Google Play for final availability and pricing. No subscription or unlimited cloud-storage promise.</p><a class="button button-green" href={googlePlayUrl}>Get it on Google Play</a></div>
     </section>
 </BackDoorSiteLayout>
 <style>
