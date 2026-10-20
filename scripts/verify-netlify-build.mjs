@@ -2,7 +2,9 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 
 // Exercise the packaged production function without hosted requests or real data.
-const origin = 'https://backdoormap.com';
+const brand = process.argv[2] || 'backdoor-map';
+assert.ok(['company', 'backdoor-map'].includes(brand), 'Unknown verification brand');
+const origin = brand === 'company' ? 'https://coldforgeworks.com' : 'https://backdoormap.com';
 const api = `${origin}/api/backdoor-map/account-deletion`;
 const owner = '11111111-1111-4111-8111-111111111111';
 const email = 'disposable@example.invalid';
@@ -78,7 +80,7 @@ try {
   assert.deepEqual(calls, ['/auth/v1/otp', '/auth/v1/verify', '/functions/v1/delete-backup-account', '/auth/v1/logout']);
   const landing = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
   assert.match(landing, /BackDoor Map/);
-  assert.match(landing, /https:\/\/backdoormap\.com/);
+  assert.ok(landing.includes(`href="${origin}/"`), 'Wrong publication canonical');
   console.log('Packaged Netlify function: disabled/enabled rendering, headers, origin checks, confirmation and mocked deletion passed. No hosted requests made.');
 } finally {
   globalThis.fetch = originalFetch;

@@ -1,5 +1,10 @@
 # Astro on Netlify Platform Starter
 
+**Current publication procedure (October 19, 2026):** use
+[the production build and verification guide](docs/PUBLICATION.md).
+The September static exporter is retired; current policies and hosted account
+deletion must survive every deployment. The older candidate notes below are historical.
+
 ## BackDoor Map website candidate
 
 This repository also contains the unpublished dedicated BackDoor Map website.
