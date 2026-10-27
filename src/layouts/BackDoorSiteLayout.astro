@@ -16,6 +16,7 @@ const home = publication.homePath;
         <meta name="description" content={description} />
         <meta name="theme-color" content="#133e36" />
         <SearchMetadata {title} {description} {canonicalUrl} {noIndex}
+            siteName="BackDoor Map"
             imageUrl={new URL('/backdoor-map/service-entrance.webp', publication.urls.overview).href} />
         <WebsiteAnalytics />
         <link rel="icon" type="image/svg+xml" href="/backdoor-map/mark.svg" />
@@ -25,13 +26,13 @@ const home = publication.homePath;
         <header class="site-header">
             <div class="site-width header-inner">
                 <a class="brand" href={home} aria-label="BackDoor Map home"><img src="/backdoor-map/mark.svg" alt="" width="36" height="36" /><span>BackDoor Map</span></a>
-                <nav aria-label="Main navigation"><a href={`${home}#your-places`}>Your places</a><a href={`${home}#questions`}>Questions</a><a href="/backdoor-map/support">Support</a></nav>
+                <nav aria-label="Main navigation"><a href={`${home}#your-places`}>Freight entrances</a><a href={`${home}#questions`}>Questions</a><a href="/backdoor-map/support">Support</a></nav>
             </div>
         </header>
         <main id="main" class:list={{ 'document-main': document }}><slot /></main>
         <footer class="site-footer">
             <div class="site-width footer-grid">
-                <div><a class="brand" href={home}>BackDoor Map</a><p>Your places, remembered.</p><p>A product of <a href="https://coldforgeworks.com">Cold Forge Works LLC</a>.</p></div>
+                <div><a class="brand" href={home}>BackDoor Map</a><p>Freight entrances, shared and remembered.</p><p>A product of <a href="https://coldforgeworks.com">Cold Forge Works LLC</a>.</p></div>
                 <nav aria-label="Help and policies">
                     <a href="/backdoor-map/support">Support</a><a href="/backdoor-map/privacy">App privacy</a><a href="/backdoor-map/terms">App terms</a><a href="/backdoor-map/community-standards">Community standards</a><a href="/backdoor-map/data-requests">Data requests</a><a href="/website-privacy">Website privacy</a>
                 </nav>

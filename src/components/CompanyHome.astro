@@ -1,12 +1,15 @@
 ---
 import CompanyLayout from '../layouts/CompanyLayout.astro';
+import StructuredData from './StructuredData.astro';
+import { homepageGraph } from '../lib/site-seo.mjs';
 import { backdoorWebsiteLink } from '../data/site-brand.mjs';
 import { BACKDOOR_MAP_GOOGLE_PLAY_URL as googlePlayUrl } from '../data/backdoor-map';
 const backdoor = backdoorWebsiteLink(import.meta.env.PUBLIC_BACKDOOR_SITE_LIVE);
 ---
 <CompanyLayout title="Cold Forge Works LLC | BackDoor Map and reviveme.gg"
-    description="The company behind BackDoor Map and reviveme.gg. Personal saved entrances and notes, and a community for finding players and organizing games."
+    description="The company behind BackDoor Map’s crowdsourced freight entrance map and reviveme.gg’s community for finding players and organizing games."
     canonicalUrl="https://coldforgeworks.com/">
+    <StructuredData data={homepageGraph('company')} />
     <div class="company-home">
         <section class="company-intro" aria-labelledby="company-heading">
             <p class="section-label">Independent software</p>
@@ -21,9 +24,9 @@ const backdoor = backdoorWebsiteLink(import.meta.env.PUBLIC_BACKDOOR_SITE_LIVE);
                 <div class="product-copy">
                     <p class="product-status"><span class="status-dot available" aria-hidden="true"></span>Android app / Available in the U.S.</p>
                     <h3 id="backdoor-heading">BackDoor Map</h3>
-                    <p class="product-intro">Remember the entrance.<br />Keep the details.</p>
-                    <p>Save the buildings you visit, mark your own entrance and keep private notes. Previously saved places and entrance information stay useful offline.</p>
-                    <p>Community entrance reports add another perspective. Your personal pin and notes remain separate, even when the public pin changes.</p>
+                    <p class="product-intro">Find the freight entrance.<br />Before your first visit.</p>
+                    <p>Find freight entrance locations other people have reported, including at buildings you’ve never visited. Submit the entrances you know and vote on reports to help improve the shared map.</p>
+                    <p>Save your own freight entrance pins and private notes for next time. They’re useful even where no community report exists. Previously saved entrance information and notes stay useful offline.</p>
                     <div class="product-links"><a class="product-link" href={googlePlayUrl}>Get it on Google Play <span aria-hidden="true">&rarr;</span></a><a href={backdoor.href}>Explore BackDoor Map</a><a href="/backdoor-map/support">App support</a></div>
                     <p class="availability">Android is available on Google Play in the United States for $4.99, a one-time purchase. The iPhone version is awaiting App Store review.</p>
                     <p class="product-caution">Reported pins are not permission to enter. Follow posted signs and site rules. New searches need internet; offline map tiles are not guaranteed.</p>

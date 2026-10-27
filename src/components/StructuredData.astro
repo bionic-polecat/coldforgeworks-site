@@ -1,0 +1,6 @@
+---
+import { serializeSearchData } from '../lib/site-seo.mjs';
+interface Props { data: unknown }
+const { data } = Astro.props;
+---
+<script type="application/ld+json" set:html={serializeSearchData(data)} />
