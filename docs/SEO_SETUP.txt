@@ -1,0 +1,35 @@
+Website search setup — October 27, 2026
+
+The company and product sites already had server-rendered titles/descriptions,
+canonical URLs, crawlable HTML, robots.txt and sitemaps. Both domain properties
+already exist in the owner's Google Search Console. BackDoor Map's submitted
+sitemap was observed as Success; this is an existing setup, not a new account.
+
+This revision publishes the owner-approved freight/community-first copy and:
+- Uses freight entrance locations explicitly in the product title and text.
+- Makes backdoormap.com the canonical product overview, including the duplicate
+  coldforgeworks.com/backdoor-map route, while preserving policy/support URLs.
+- Removes that duplicate overview from the company sitemap.
+- Adds connected Organization, WebSite and WebPage structured data using only
+  visible, verified product/publisher facts. It adds no tracking and invents no
+  reviews, ratings, user counts or software-app rich-result eligibility.
+- Completes social-preview titles/descriptions and site identity metadata.
+
+Deploy and recheck both brands using docs/PUBLICATION.md. Preserve the current
+production account-deletion function and protected policy source content. Do
+not upload a static-only build or change any app/store submission for SEO work.
+
+After publication, check the two sitemaps in Search Console and request a
+fresh crawl of the two homepages if allowed. Acceptance is not confirmation
+that Google has indexed the new text. Search appearance and organic traffic
+depend on Google's crawling/ranking and real demand; no ranking is promised.
+
+Primary guidance used:
+https://developers.google.com/search/docs/fundamentals/seo-starter-guide
+https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls
+https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
+https://developers.google.com/search/docs/appearance/structured-data/software-app
+
+Next content should answer actual freight-entrance questions. Do not create
+thin city/building pages, publish private notes, buy backlinks, or claim that
+community coverage exists where no entrance has been reported.

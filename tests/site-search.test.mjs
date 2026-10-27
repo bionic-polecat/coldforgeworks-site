@@ -5,7 +5,7 @@ import { searchUrls, sitemapXml, robotsText } from '../src/lib/site-search.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 
-for (const [brand, host, count] of [['company', 'coldforgeworks.com', 3], ['backdoor-map', 'backdoormap.com', 2]]) {
+for (const [brand, host, count] of [['company', 'coldforgeworks.com', 2], ['backdoor-map', 'backdoormap.com', 2]]) {
     test(`${brand}: sitemap contains only approved canonical pages on its own domain`, () => {
         const urls = searchUrls(brand);
         assert.equal(urls.length, count);

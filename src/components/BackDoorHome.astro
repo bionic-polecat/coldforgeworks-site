@@ -1,8 +1,12 @@
 ---
 import BackDoorSiteLayout from '../layouts/BackDoorSiteLayout.astro';
+import StructuredData from './StructuredData.astro';
+import { homepageGraph, PRODUCT_CANONICAL } from '../lib/site-seo.mjs';
 import { BACKDOOR_MAP_PUBLICATION as publication, BACKDOOR_MAP_GOOGLE_PLAY_URL as googlePlayUrl } from '../data/backdoor-map';
 const questions = [
-    ['Do I need community pins to use the app?', 'No. Save a building, place your own entrance pin and add private notes. Your information stays useful even where nobody else has contributed. Community reports are additional context, not guaranteed coverage.'],
+    ['Can it help at a building I have never visited?', 'Yes, when someone has reported its freight entrance. Look up the community location and its feedback before you arrive. Coverage varies by building; an address marker alone is not a reported freight entrance. Follow current building access instructions.'],
+    ['How do submissions and votes work?', 'Submit a freight entrance you know so other people can find it. Confirm a correct report, mark one wrong or suggest a correction. Votes help people assess the report; they do not guarantee accuracy or permission to enter.'],
+    ['What if nobody has reported the freight entrance yet?', 'Save your own freight entrance pin and private notes for next time. Those are useful immediately, even without community coverage. Share the entrance when you choose to help the next person; your private notes are not public contributions.'],
     ['What can I use offline?', 'Previously saved places, private pins, notes and last saved community entrance information remain available on your device. New address searches, fresh community information and contributions need a connection. Offline map tiles are not guaranteed.'],
     ['Can my entrance differ from the community entrance?', 'Yes. Your personal entrance is independent of community consensus. Switch between My entrance and Community, and choose separately whether to contribute a pin or proposed correction. Your private notes are not public submissions.'],
     ['Will my places survive a lost or replaced phone?', 'Local-only information can be lost with the device or an uninstall. Optional account backup is available: enable it explicitly and check for a confirmed backup time before relying on recovery. An encrypted manual export also needs its separate recovery key.'],
@@ -10,49 +14,50 @@ const questions = [
     ['Can my company share places and notes?', 'Not in the first personal-use release. Company accounts and shared workspaces are future plans. Personal notes and backup accounts are not shared with employers or coworkers.']
 ];
 ---
-<BackDoorSiteLayout title="BackDoor Map | Saved entrances. Private notes."
-    description="Keep entrance locations, saved places and private notes for the buildings you visit. BackDoor Map is available for Android in the U.S.; the iPhone version is awaiting App Store review."
-    canonicalUrl={publication.urls.overview}>
+<BackDoorSiteLayout title="BackDoor Map | Find Freight Entrance Locations"
+    description="Find crowdsourced freight entrance locations. Submit and vote on reports, and save your own freight pins and private notes. Android in the U.S."
+    canonicalUrl={PRODUCT_CANONICAL}>
+    <StructuredData data={homepageGraph('backdoor-map')} />
     <section class="hero" aria-labelledby="product-name">
         <img class="hero-image" src="/backdoor-map/service-entrance.webp" alt="" width="1672" height="941" fetchpriority="high" />
         <div class="site-width hero-inner">
-            <p class="eyebrow">For the buildings you come back to</p>
+            <p class="eyebrow">Freight entrances, shared by the people who use them</p>
             <h1 id="product-name">BackDoor Map</h1>
-            <p class="hero-intro">Remember the entrance.<br />Keep the details.</p>
-            <p class="hero-copy">Your own entrance pins, saved places and private notes.<br class="desktop-break" /> Ready for the next delivery, service call or site visit.</p>
+            <p class="hero-intro">Find the freight entrance.<br />Before your first visit.</p>
+            <p class="hero-copy">Find freight entrances reported by other people—even at buildings you’ve never visited. Submit the ones you know, vote on reports, and keep your own freight entrance pins and private notes for next time.</p>
             <div class="hero-actions"><a class="button button-yellow" href={googlePlayUrl}>Get it on Google Play</a><a class="hero-link" href="#your-places">Explore the app</a><a class="hero-link" href="#release">Availability</a></div>
             <p class="hero-status">Available for Android in the U.S. · iPhone version awaiting App Store review</p>
         </div>
     </section>
     <section id="your-places" class="section site-width" aria-labelledby="personal-value">
-        <div class="section-heading"><p class="eyebrow">Useful from your first saved place</p><h2 id="personal-value">Your places. Your information.</h2><p>A street address gets you to the building. Save the entrance and details you want to remember when you return.</p></div>
+        <div class="section-heading"><p class="eyebrow">Find it. Share it. Remember it.</p><h2 id="personal-value">Freight entrance locations.<br />Community knowledge.</h2><p>For anyone whose work takes them to a building’s freight entrance and who wants help finding it or remembering it next time.</p></div>
         <div class="features">
-            <article><span class="number">01</span><h3>Save your entrance</h3><p>Place a personal pin independently of the community pin. Keep the entrance you use attached to your saved building.</p></article>
-            <article><span class="number">02</span><h3>Keep private notes</h3><p>Give a place a familiar name and keep useful reminders together. Your notes stay separate from public contributions.</p></article>
-            <article><span class="number">03</span><h3>Take saved details offline</h3><p>Open saved places, notes, personal pins and cached community information without a connection. No new search required.</p></article>
+            <article><span class="number">01</span><h3>Find a reported freight entrance</h3><p>Look up a location someone else has reported, even before your first visit. See community feedback to help assess the report. Coverage varies by building.</p></article>
+            <article><span class="number">02</span><h3>Submit an entrance. Vote on reports.</h3><p>Share a freight entrance you know. Confirm a correct report, mark one wrong or suggest a correction so the next person benefits.</p></article>
+            <article><span class="number">03</span><h3>Keep your own freight pins and notes</h3><p>Save the entrance you use and the private details you want to remember. Useful from your first saved entrance, even where nobody has contributed yet.</p></article>
         </div>
         <p class="footnote">Saved information is available offline. New searches and live community updates need internet; map tiles may not be available offline.</p>
     </section>
     <section class="app-band" aria-labelledby="inside-app">
         <div class="site-width section">
-            <div class="section-heading"><p class="eyebrow">A look inside</p><h2 id="inside-app">Find it. Save it. Remember it.</h2><p>Search across the U.S., keep your own information, and compare community reports when you need them.</p></div>
+            <div class="section-heading"><p class="eyebrow">A look inside</p><h2 id="inside-app">Know where the freight entrance is.</h2><p>Search for a building, see its reported freight entrance and community feedback, then save your own entrance and notes for next time.</p></div>
             <div class="screens">
                 <figure><a href="/backdoor-map/search-preview.webp" aria-label="Open full-size address search preview"><img src="/backdoor-map/search-preview.webp" alt="Android development build finding 1500 Marilla Street in Dallas, Texas" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Search beyond your neighborhood</strong><span>Use a state filter or add a city to narrow the address.</span></figcaption></figure>
-                <figure><a href="/backdoor-map/community-preview.webp" aria-label="Open full-size community entrance preview"><img src="/backdoor-map/community-preview.webp" alt="My entrance and Community options above the Empire State Building entrance report" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Know which pin you are viewing</strong><span>Your personal entrance and the community report are separate.</span></figcaption></figure>
+                <figure><a href="/backdoor-map/community-preview.webp" aria-label="Open full-size community freight entrance preview"><img src="/backdoor-map/community-preview.webp" alt="Community-reported freight entrance with Confirm correct, Mark wrong and Suggest correction controls" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Find what others have reported</strong><span>Use community reports and votes before your first visit. Contribute what you know to help the next person.</span></figcaption></figure>
                 <figure><a href="/backdoor-map/notes-preview.webp" aria-label="Open full-size private notes preview"><img src="/backdoor-map/notes-preview.webp" alt="Private notes screen with disposable local test content" width="648" height="1404" loading="lazy" /></a><figcaption><strong>Keep the useful details with the place</strong><span>Private notes remain available with your saved building.</span></figcaption></figure>
             </div>
             <p class="footnote">Actual Android development previews with test content. Final store release screens may differ.</p>
         </div>
     </section>
     <section class="section site-width community-section" aria-labelledby="community-value">
-        <div><p class="eyebrow">Personal first. Better together.</p><h2 id="community-value">Your pin stays yours.<br />Sharing helps everyone.</h2></div>
-        <div><p>Your entrance does not have to agree with the public pin. Keep your own version private, or contribute what you know so the next person has a better starting point.</p><p>Community reports can be confirmed, disputed or corrected. They may be incomplete or outdated, and they never replace posted signs or permission to enter.</p><a class="text-link" href="/backdoor-map/community-standards">Read the community standards</a></div>
+        <div><p class="eyebrow">Someone else’s knowledge. Your first visit.</p><h2 id="community-value">Help the next person<br />find the right door.</h2></div>
+        <div><p>A reported freight entrance can help someone who has never been to that building. Submit the entrances you know and vote on reports to help improve the shared map.</p><p>Your own freight entrance pin stays independent of the community pin, and your private notes are not published through contributions. You can start saving useful information even where no community report exists.</p><p>Community reports can be incomplete or outdated. Follow posted signs and current building access instructions.</p><a class="text-link" href="/backdoor-map/community-standards">Read the community standards</a></div>
     </section>
     <section id="questions" class="questions-band" aria-labelledby="questions-heading">
         <div class="site-width section questions-layout"><div><p class="eyebrow">Before you get started</p><h2 id="questions-heading">Good questions.<br />Straight answers.</h2></div><div class="questions">{questions.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div>
     </section>
     <section id="release" class="section site-width release" aria-labelledby="release-heading">
-        <div><p class="eyebrow">Available on Google Play</p><h2 id="release-heading">Built for your everyday stops.</h2><p>The Android app is available in the United States. The iPhone version is awaiting App Store review; its release date has not been announced.</p></div>
+        <div><p class="eyebrow">Available on Google Play</p><h2 id="release-heading">Find it for the first visit.<br />Keep it for the next.</h2><p>The Android app is available in the United States. The iPhone version is awaiting App Store review; its release date has not been announced.</p></div>
         <div class="release-price"><p class="price">$4.99 <span>U.S. one-time price</span></p><p>One-time purchase for the personal-use Android app. Check Google Play for final availability and pricing. No subscription or unlimited cloud-storage promise.</p><a class="button button-green" href={googlePlayUrl}>Get it on Google Play</a></div>
     </section>
 </BackDoorSiteLayout>

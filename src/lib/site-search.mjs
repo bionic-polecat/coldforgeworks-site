@@ -4,7 +4,9 @@ import { publicationFor } from '../data/site-brand.mjs';
 export function searchUrls(brand) {
     const publication = publicationFor(brand);
     const root = new URL('/', publication.urls.overview).href;
-    return [...new Set([root, publication.urls.overview, publication.urls.communityStandards])];
+    // Both overview routes describe the same product; its canonical home is
+    // backdoormap.com. Do not submit the company's duplicate product overview.
+    return [...new Set([root, ...(publication.standalone ? [publication.urls.overview] : []), publication.urls.communityStandards])];
 }
 
 export function sitemapXml(brand) {
