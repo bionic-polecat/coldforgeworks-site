@@ -19,6 +19,14 @@ the October 19 source work.
 
 ## Build and validate
 
+The production context in `netlify.toml` explicitly enables the already-approved
+free Cloudflare homepage measurement with `PUBLIC_WEBSITE_ANALYTICS=true`.
+Deploy previews retain the default opt-out. For a local production build before
+a manual deployment, supply that same public flag explicitly; a local preview
+build must not silently enable it. The component still restricts actual beacon
+loading to exact public HTTPS homepages, honors Do Not Track, and excludes
+account/policy pages and identifier-bearing URLs/referrers.
+
 Run `npm test`, then `npm run build` for company or `npm run build:backdoor` for
 the product. Netlify's known `SITE_ID` selects and validates the corresponding
 brand; conflicting or unknown site IDs fail. The default local build is company.
