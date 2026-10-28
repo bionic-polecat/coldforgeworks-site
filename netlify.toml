@@ -4,3 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# The existing free homepage-only Cloudflare measurement is approved for the
+# production sites. Previews keep the component's default opt-out behavior.
+[context.production.environment]
+  PUBLIC_WEBSITE_ANALYTICS = "true"
