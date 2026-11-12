@@ -30,17 +30,19 @@ test('standalone build uses only the owned domain and preserves route compatibil
     }
 });
 
-test('Android launch links the verified store while iPhone review and backup limits remain clear', () => {
+test('the product home links to both U.S. stores and describes availability and backup limits', () => {
     const home = read('src/components/BackDoorHome.astro');
-    assert.match(home, /Android app is available in the United States/);
+    const stores = read('src/data/backdoor-map.ts');
+    assert.match(home, /Available for iPhone and Android in the U.S./);
     assert.match(home, /\$4\.99/);
     assert.match(home, /U.S. one-time price/);
-    assert.match(home, /iPhone version is awaiting App Store review; its release date has not been announced/);
     assert.equal((home.match(/href=\{googlePlayUrl\}/g) || []).length, 2);
-    assert.match(read('src/data/backdoor-map.ts'), /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.coldforgeworks\.backdoormap/);
+    assert.equal((home.match(/href=\{appStoreUrl\}>Download on the App Store/g) || []).length, 2);
+    assert.match(stores, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.coldforgeworks\.backdoormap/);
+    assert.match(stores, /https:\/\/apps\.apple\.com\/us\/app\/backdoor-map\/id6783116672/);
     assert.match(home, /Offline map tiles are not guaranteed/);
     assert.match(home, /Actual Android development previews with test content/);
-    assert.doesNotMatch(home, /apps\.apple\.com|play\.google\.com|<form|<script|download now/i);
+    assert.doesNotMatch(home, /awaiting App Store review|apps\.apple\.com|play\.google\.com|<form|<script|download now/i);
     for (const [, asset] of home.matchAll(/src="(\/backdoor-map\/[^\"]+)"/g)) {
         assert.ok(existsSync(new URL(`../public${asset}`, import.meta.url)), asset);
     }
