@@ -3,7 +3,7 @@ import CompanyLayout from '../layouts/CompanyLayout.astro';
 import StructuredData from './StructuredData.astro';
 import { homepageGraph } from '../lib/site-seo.mjs';
 import { backdoorWebsiteLink } from '../data/site-brand.mjs';
-import { BACKDOOR_MAP_GOOGLE_PLAY_URL as googlePlayUrl } from '../data/backdoor-map';
+import { BACKDOOR_MAP_APP_STORE_URL as appStoreUrl, BACKDOOR_MAP_GOOGLE_PLAY_URL as googlePlayUrl } from '../data/backdoor-map';
 const backdoor = backdoorWebsiteLink(import.meta.env.PUBLIC_BACKDOOR_SITE_LIVE);
 ---
 <CompanyLayout title="Cold Forge Works LLC | BackDoor Map and reviveme.gg"
@@ -22,13 +22,18 @@ const backdoor = backdoorWebsiteLink(import.meta.env.PUBLIC_BACKDOOR_SITE_LIVE);
             <h2 id="products-heading">Two products. Practical purposes.</h2>
             <article class="product backdoor-product" aria-labelledby="backdoor-heading">
                 <div class="product-copy">
-                    <p class="product-status"><span class="status-dot available" aria-hidden="true"></span>Android app / Available in the U.S.</p>
+                    <p class="product-status"><span class="status-dot available" aria-hidden="true"></span>iPhone and Android / Available in the U.S.</p>
                     <h3 id="backdoor-heading">BackDoor Map</h3>
                     <p class="product-intro">Find the freight entrance.<br />Before your first visit.</p>
                     <p>Find freight entrance locations other people have reported, including at buildings you’ve never visited. Submit the entrances you know and vote on reports to help improve the shared map.</p>
                     <p>Save your own freight entrance pins and private notes for next time. They’re useful even where no community report exists. Previously saved entrance information and notes stay useful offline.</p>
-                    <div class="product-links"><a class="product-link" href={googlePlayUrl}>Get it on Google Play <span aria-hidden="true">&rarr;</span></a><a href={backdoor.href}>Explore BackDoor Map</a><a href="/backdoor-map/support">App support</a></div>
-                    <p class="availability">Android is available on Google Play in the United States for $4.99, a one-time purchase. The iPhone version is awaiting App Store review.</p>
+                    <div class="product-links">
+                        <a class="product-link" href={googlePlayUrl}>Get it on Google Play <span aria-hidden="true">&rarr;</span></a>
+                        <a class="product-link" href={appStoreUrl}>Download on the App Store <span aria-hidden="true">&rarr;</span></a>
+                        <a href={backdoor.href}>Explore BackDoor Map</a>
+                        <a href="/backdoor-map/support">App support</a>
+                    </div>
+                    <p class="availability">$4.99 as a one-time purchase on either store in the U.S.</p>
                     <p class="product-caution">Reported pins are not permission to enter. Follow posted signs and site rules. New searches need internet; offline map tiles are not guaranteed.</p>
                 </div>
                 <figure class="product-preview">

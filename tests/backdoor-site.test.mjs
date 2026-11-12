@@ -64,18 +64,19 @@ test('company product link stays on the working overview until dedicated publica
     for (const value of ['TRUE', 'yes', 'https://other.example', null, true]) assert.throws(() => backdoorWebsiteLink(value));
 });
 
-test('company copy distinguishes the Android launch from the iPhone still in review', () => {
+test('company copy links both live stores and states the U.S. price', () => {
     const home = read('src/components/CompanyHome.astro');
     assert.match(home, /href="https:\/\/reviveme\.gg\/"/);
     assert.doesNotMatch(home, /ReviveMe|Reviveme|REVIVEME/);
-    assert.match(home, /Android is available on Google Play in the United States for \$4\.99, a one-time purchase/);
-    assert.match(home, /iPhone version is awaiting App Store review/);
+    assert.match(home, /iPhone and Android \/ Available in the U\.S\./);
+    assert.match(home, /\$4\.99 as a one-time purchase on either store in the U\.S\./);
     assert.match(home, /href=\{googlePlayUrl\}/);
+    assert.match(home, /href=\{appStoreUrl\}>Download on the App Store/);
     assert.match(home, /Community website \/ Available now/);
     assert.match(home, /private notes/);
     assert.match(home, /previously saved/i);
     assert.match(home, /href=\{backdoor.href\}/);
     assert.match(home, /canonicalUrl="https:\/\/coldforgeworks\.com\/"/);
-    assert.doesNotMatch(home, /<form|<script|apps\.apple\.com|play\.google\.com/);
+    assert.doesNotMatch(home, /awaiting App Store review|<form|<script|apps\.apple\.com|play\.google\.com/);
     for (const [, link] of home.matchAll(/href="(#[^\"]+)"/g)) assert.ok(home.includes(`id="${link.slice(1)}"`), link);
 });
